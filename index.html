@@ -18,13 +18,50 @@
 
     <p>Advertisement dekhkar file unlock karein.</p>
 
-    <button onclick="watchAd()">
+    <button id="unlockButton" onclick="watchAd()">
         📺 Watch Ad & Unlock
     </button>
 
     <p id="status"></p>
 
     <script>
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+
+        const REWARD_SERVER =
+            "https://kinds-ensure-window-hughes.trycloudflare.com";
+
+        async function checkUnlock() {
+            if (!token) {
+                return false;
+            }
+
+            try {
+                const response = await fetch(
+                    REWARD_SERVER + "/unlock/status?token=" +
+                    encodeURIComponent(token),
+                    { cache: "no-store" }
+                );
+
+                if (!response.ok) {
+                    return false;
+                }
+
+                const data = await response.json();
+
+                if (data.ok && data.unlocked) {
+                    document.getElementById("status").innerText =
+                        "✅ File unlocked! Telegram mein file aa rahi hai.";
+                    document.getElementById("unlockButton").disabled = true;
+                    return true;
+                }
+            } catch (error) {
+                console.log("Unlock status check failed:", error);
+            }
+
+            return false;
+        }
+
         async function watchAd() {
             const status = document.getElementById("status");
 
@@ -33,7 +70,21 @@
             try {
                 await show_11773161();
 
-                status.innerText = "✅ Advertisement completed!";
+                status.innerText =
+                    "✅ Advertisement completed! File unlock verify ho raha hai...";
+
+                for (let i = 0; i < 30; i++) {
+                    if (await checkUnlock()) {
+                        return;
+                    }
+
+                    await new Promise(resolve =>
+                        setTimeout(resolve, 2000)
+                    );
+                }
+
+                status.innerText =
+                    "⏳ Unlock verify hone mein thoda time lag raha hai. Telegram check karein.";
             } catch (error) {
                 status.innerText = "❌ Advertisement failed.";
             }
