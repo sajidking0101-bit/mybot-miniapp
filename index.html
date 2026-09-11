@@ -3,10 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>File Unlock</title>
+
+    <script
+        src="https://libtl.com/sdk.js"
+        data-zone="11773161"
+        data-sdk="show_11773161">
+    </script>
 </head>
+
 <body>
     <h2>🔓 File Unlock</h2>
-    <p>Loading...</p>
+
+    <p>Advertisement dekhkar file unlock karein.</p>
+
+    <button onclick="watchAd()">
+        📺 Watch Ad & Unlock
+    </button>
+
+    <p id="status"></p>
+
+    <script>
+        async function watchAd() {
+            const status = document.getElementById("status");
+
+            status.innerText = "⏳ Advertisement loading...";
+
+            try {
+                await show_11773161();
+
+                status.innerText = "✅ Advertisement completed!";
+            } catch (error) {
+                status.innerText = "❌ Advertisement failed.";
+            }
+        }
+    </script>
 </body>
 </html>
