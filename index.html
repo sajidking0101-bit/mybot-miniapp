@@ -6,23 +6,133 @@
 
     <title>File Unlock</title>
 
+    <!-- Monetag: unchanged -->
     <script
         src="https://libtl.com/sdk.js"
         data-zone="11773161"
         data-sdk="show_11773161">
     </script>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #334155 0%, #111827 45%, #020617 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 390px;
+            padding: 30px 22px;
+            text-align: center;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+            backdrop-filter: blur(18px);
+        }
+
+        .icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 18px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 26px;
+        }
+
+        .desc {
+            margin: 0 auto 24px;
+            color: #cbd5e1;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        #unlockButton {
+            width: 100%;
+            border: 0;
+            border-radius: 16px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 10px 25px rgba(99,102,241,0.35);
+            cursor: pointer;
+        }
+
+        #unlockButton:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        #status {
+            min-height: 24px;
+            margin: 18px 0 0;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .back {
+            margin-top: 20px;
+            background: transparent;
+            border: 0;
+            color: #94a3b8;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back:hover {
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>🔓 File Unlock</h2>
 
-    <p>Advertisement dekhkar file unlock karein.</p>
+    <div class="card">
 
-    <button id="unlockButton" onclick="watchAd()">
-        📺 Watch Ad & Unlock
-    </button>
+        <div class="icon">🔐</div>
 
-    <p id="status"></p>
+        <h1>File Unlock</h1>
+
+        <p class="desc">
+            Watch one short advertisement to unlock your requested file.
+        </p>
+
+        <button id="unlockButton" onclick="watchAd()">
+            📺 Watch Ad & Unlock
+        </button>
+
+        <p id="status"></p>
+
+        <button class="back" onclick="goBack()">
+            ← Back
+        </button>
+
+    </div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
@@ -30,6 +140,9 @@
 
         const REWARD_SERVER =
             "https://kinds-ensure-window-hughes.trycloudflare.com";
+
+        const tg = window.Telegram.WebApp;
+        tg.ready();
 
         async function checkUnlock() {
             if (!token) {
@@ -52,9 +165,12 @@
                 if (data.ok && data.unlocked) {
                     document.getElementById("status").innerText =
                         "✅ File unlocked! Telegram mein file aa rahi hai.";
+
                     document.getElementById("unlockButton").disabled = true;
+
                     return true;
                 }
+
             } catch (error) {
                 console.log("Unlock status check failed:", error);
             }
@@ -71,9 +187,10 @@
                 await show_11773161();
 
                 status.innerText =
-                    "✅ Advertisement completed! File unlock verify ho raha hai...";
+                    "✅ Advertisement completed! Unlock verify ho raha hai...";
 
                 for (let i = 0; i < 30; i++) {
+
                     if (await checkUnlock()) {
                         return;
                     }
@@ -84,11 +201,22 @@
                 }
 
                 status.innerText =
-                    "⏳ Unlock verify hone mein thoda time lag raha hai. Telegram check karein.";
+                    "⏳ Verification mein thoda time lag raha hai.";
+
             } catch (error) {
-                status.innerText = "❌ Advertisement failed.";
+                status.innerText =
+                    "❌ Advertisement failed. Please try again.";
+            }
+        }
+
+        function goBack() {
+            if (tg && tg.close) {
+                tg.close();
+            } else {
+                window.history.back();
             }
         }
     </script>
+
 </body>
 </html>
