@@ -283,6 +283,31 @@ async function waitForVerification(){
     button.disabled = false;
 }
 
+// Monetag ad mode is controlled from the bot Admin Panel.
+const AD_MODE_API = "https://api.flashfileshare.cyou/ad-mode";
+
+async function getMonetagAdMode(){
+    try{
+        const response = await fetch(AD_MODE_API, {
+            cache: "no-store"
+        });
+
+        if(!response.ok){
+            throw new Error("Ad mode API failed");
+        }
+
+        const data = await response.json();
+
+        if(data && (data.mode === "pop" || data.mode === "interstitial")){
+            return data.mode;
+        }
+    }catch(error){
+        console.log("Ad mode fetch error:", error);
+    }
+
+    return "pop";
+}
+
 async function watchAd(){
 
     if(!token){
@@ -300,8 +325,10 @@ async function watchAd(){
 
     try{
 
+        const monetagAdMode = await getMonetagAdMode();
+
         await show_11773161({
-            type: 'pop',
+            type: monetagAdMode,
             ymid: token
         });
 
