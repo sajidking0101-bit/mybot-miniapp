@@ -262,12 +262,11 @@ async function waitForVerification(){
 
             button.disabled = false;
             button.innerText = "✅ GET FILE";
-            button.onclick = () => {
-
+            button.removeAttribute("onclick");
+            button.onclick = function(){
                 window.location.href =
                     "https://t.me/" + BOT + "?start=unlock_" +
                     encodeURIComponent(token);
-
             };
 
             return;
