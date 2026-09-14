@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Flash File Share • Unlock</title>
+<title>Flash File Share • Premium Unlock</title>
 
 <!-- MONETAG: DO NOT CHANGE -->
 <script src="https://libtl.com/sdk.js" data-zone="11773161" data-sdk="show_11773161"></script>
@@ -12,66 +12,187 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
- margin:0;min-height:100vh;font-family:Arial,sans-serif;
- background:linear-gradient(145deg,#080b18,#111936 55%,#07111f);
- color:#fff;display:flex;align-items:center;justify-content:center;padding:20px
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(0,145,255,.35),transparent 35%),
+        radial-gradient(circle at 85% 90%,rgba(0,70,190,.35),transparent 40%),
+        linear-gradient(145deg,#03152f,#062b5c 50%,#020b1c);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
+
 .card{
- width:100%;max-width:430px;padding:30px 22px;border-radius:28px;
- background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
- box-shadow:0 20px 60px rgba(0,0,0,.45);text-align:center;
- backdrop-filter:blur(18px)
+    width:100%;
+    max-width:430px;
+    padding:32px 22px 24px;
+    border-radius:30px;
+    background:rgba(5,30,65,.78);
+    border:1px solid rgba(95,190,255,.25);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+    text-align:center;
+    backdrop-filter:blur(20px);
 }
+
 .logo{
- width:76px;height:76px;margin:0 auto 18px;border-radius:22px;
- display:flex;align-items:center;justify-content:center;font-size:38px;
- background:linear-gradient(135deg,#6d5dfc,#24c8ff);
- box-shadow:0 12px 35px rgba(36,200,255,.25)
+    width:82px;
+    height:82px;
+    margin:0 auto 20px;
+    border-radius:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:39px;
+    background:linear-gradient(145deg,#168cff,#0057d9);
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:
+        0 14px 35px rgba(0,130,255,.35),
+        inset 0 1px 8px rgba(255,255,255,.18);
 }
-h1{font-size:24px;margin:8px 0}
-.sub{color:#aeb7d0;font-size:14px;line-height:1.6}
+
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(0,160,255,.12);
+    border:1px solid rgba(80,190,255,.22);
+    color:#74d2ff;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.6px;
+    margin-bottom:10px;
+}
+
+h1{
+    font-size:25px;
+    margin:5px 0 9px;
+}
+
+.sub{
+    color:#b8cbe5;
+    font-size:14px;
+    line-height:1.6;
+}
+
 .info{
- margin:22px 0;padding:16px;border-radius:18px;
- background:rgba(255,255,255,.06);text-align:left
+    margin:23px 0 18px;
+    padding:15px 16px;
+    border-radius:19px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:left;
 }
-.row{display:flex;justify-content:space-between;padding:7px 0;font-size:14px}
-.label{color:#9da8c3}.value{font-weight:bold}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 0;
+    font-size:14px;
+}
+
+.row + .row{
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+.label{
+    color:#8fa9c8;
+}
+
+.value{
+    font-weight:bold;
+    color:#eaf6ff;
+}
+
 button{
- width:100%;border:0;border-radius:16px;padding:16px;
- font-size:16px;font-weight:bold;color:#fff;
- background:linear-gradient(135deg,#6d5dfc,#19bfff);
- box-shadow:0 10px 28px rgba(36,180,255,.25)
+    width:100%;
+    border:0;
+    border-radius:17px;
+    padding:17px;
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+    background:linear-gradient(135deg,#0799ff,#075bd8);
+    box-shadow:
+        0 12px 30px rgba(0,130,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    cursor:pointer;
+    transition:.2s;
 }
-button:disabled{opacity:.55}
-#status{margin-top:18px;font-size:14px;line-height:1.5;color:#cbd3e8}
-.small{margin-top:18px;font-size:11px;color:#737e99}
+
+button:active{
+    transform:scale(.98);
+}
+
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
+#status{
+    margin-top:17px;
+    min-height:22px;
+    font-size:13px;
+    line-height:1.5;
+    color:#c5d9ef;
+}
+
+.small{
+    margin-top:20px;
+    font-size:11px;
+    color:#6683a5;
+}
 </style>
 </head>
 
 <body>
+
 <div class="card">
-  <div class="logo">🔐</div>
-  <h1>Secure File Unlock</h1>
-  <div class="sub">
-    Advertisement complete karein aur aapki file unlock ho jayegi.
-  </div>
 
-  <div class="info">
-    <div class="row">
-      <span class="label">Status</span>
-      <span class="value" id="state">🔒 Locked</span>
+    <div class="logo">🔐</div>
+
+    <div class="badge">SECURE ACCESS</div>
+
+    <h1>Premium File Unlock</h1>
+
+    <div class="sub">
+        Complete the advertisement to securely unlock your requested file.
     </div>
-    <div class="row">
-      <span class="label">Protection</span>
-      <span class="value">🛡️ Secure</span>
+
+    <div class="info">
+
+        <div class="row">
+            <span class="label">Access Status</span>
+            <span class="value" id="state">🔒 Locked</span>
+        </div>
+
+        <div class="row">
+            <span class="label">Security</span>
+            <span class="value">🛡️ Protected</span>
+        </div>
+
     </div>
-  </div>
 
-  <button id="watch" onclick="watchAd()">📺 Watch Ad & Unlock</button>
+    <button id="watch" onclick="watchAd()">
+        📺 Watch Ad & Unlock
+    </button>
 
-  <div id="status">Advertisement start karne ke liye button dabayein.</div>
-  <div class="small">Flash File Share • Secure Delivery</div>
+    <div id="status">
+        Tap the button above to begin.
+    </div>
+
+    <div class="small">
+        Flash File Share • Secure Delivery
+    </div>
+
 </div>
 
 <script>
@@ -113,6 +234,7 @@ async function checkUnlock(){
             status("✅ Advertisement verified! File opening...");
             return true;
         }
+
     }catch(e){
         console.log("Unlock status check failed:", e);
     }
@@ -121,19 +243,26 @@ async function checkUnlock(){
 }
 
 async function waitForVerification(){
+
     if(checking) return;
 
     checking = true;
+
     stateEl.innerText = "⏳ Verifying";
-    status("⏳ Advertisement verify ho raha hai...");
+    status("⏳ Verifying your advertisement...");
 
     for(let i=0;i<30;i++){
+
         if(await checkUnlock()){
+
             setTimeout(() => {
+
                 window.location.href =
                     "https://t.me/" + BOT + "?start=unlock_" +
                     encodeURIComponent(token);
+
             },1000);
+
             return;
         }
 
@@ -141,43 +270,57 @@ async function waitForVerification(){
     }
 
     checking = false;
+
     stateEl.innerText = "⚠️ Pending";
-    status("⚠️ Verification mein thoda time lag raha hai. Dobara check karein.");
+    status("⚠️ Verification is taking a little longer. Please try again.");
+
     button.disabled = false;
 }
 
 async function watchAd(){
+
     if(!token){
+
         status("❌ Invalid unlock session.");
         button.disabled = true;
+
         return;
     }
 
     button.disabled = true;
+
     stateEl.innerText = "📺 Ad";
     status("⏳ Advertisement loading...");
 
     try{
+
         await show_11773161({
             ymid: token
         });
 
         status("✅ Advertisement completed. Verification waiting...");
+
         await waitForVerification();
 
     }catch(error){
+
         console.log("Monetag error:", error);
+
         stateEl.innerText = "🔒 Locked";
+
         status("❌ Advertisement complete nahi hua. Please try again.");
+
         button.disabled = false;
     }
 }
 
 if(!token){
+
     stateEl.innerText = "❌ Invalid";
     status("Invalid unlock link.");
     button.disabled = true;
 }
 </script>
+
 </body>
 </html>
