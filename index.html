@@ -255,13 +255,20 @@ async function waitForVerification(){
 
         if(await checkUnlock()){
 
-            setTimeout(() => {
+            checking = false;
+
+            stateEl.innerText = "✅ Unlocked";
+            status("🎉 Advertisement verified! Click GET FILE to continue.");
+
+            button.disabled = false;
+            button.innerText = "✅ GET FILE";
+            button.onclick = () => {
 
                 window.location.href =
                     "https://t.me/" + BOT + "?start=unlock_" +
                     encodeURIComponent(token);
 
-            },1000);
+            };
 
             return;
         }
