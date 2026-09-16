@@ -666,7 +666,7 @@ function getFile(){
 
     if(!token) return;
 
-    status("📁 Opening Telegram...");
+    status("📁 Returning to Telegram...");
 
     const url =
         "https://t.me/" +
@@ -674,14 +674,14 @@ function getFile(){
         "?start=unlock_" +
         encodeURIComponent(token);
 
-    try{
-        window.open(url, "_blank");
-    }catch(e){
-        if(window.Telegram && Telegram.WebApp && Telegram.WebApp.openTelegramLink){
-            Telegram.WebApp.openTelegramLink(url);
-        }else{
-            window.location.href = url;
-        }
+    if(
+        window.Telegram &&
+        Telegram.WebApp &&
+        Telegram.WebApp.openTelegramLink
+    ){
+        Telegram.WebApp.openTelegramLink(url);
+    }else{
+        window.location.href = url;
     }
 }
 
