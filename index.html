@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Flash File Share • Premium Unlock</title>
+<title>Flash File Share • Unlock</title>
 
 <!-- MONETAG: DO NOT CHANGE -->
 <script src="https://libtl.com/sdk.js" data-zone="11773161" data-sdk="show_11773161"></script>
@@ -18,48 +18,43 @@ body{
     min-height:100vh;
     font-family:Arial,sans-serif;
     background:
-        radial-gradient(circle at 20% 10%,rgba(0,145,255,.35),transparent 35%),
-        radial-gradient(circle at 85% 90%,rgba(0,70,190,.35),transparent 40%),
-        linear-gradient(145deg,#03152f,#062b5c 50%,#020b1c);
+        radial-gradient(circle at 15% 10%,rgba(0,145,255,.30),transparent 35%),
+        radial-gradient(circle at 90% 90%,rgba(0,80,220,.28),transparent 40%),
+        linear-gradient(145deg,#020b1c,#062b5c 52%,#03152f);
     color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:20px;
+    padding:18px;
 }
 
 .card{
     width:100%;
     max-width:430px;
-    padding:32px 22px 24px;
-    border-radius:30px;
-    background:rgba(5,30,65,.78);
+    padding:28px 20px 24px;
+    border-radius:28px;
+    background:rgba(5,30,65,.82);
     border:1px solid rgba(95,190,255,.25);
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.08);
-    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.55);
     backdrop-filter:blur(20px);
 }
 
 .logo{
-    width:82px;
-    height:82px;
-    margin:0 auto 20px;
-    border-radius:25px;
+    width:76px;
+    height:76px;
+    margin:0 auto 16px;
+    border-radius:23px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:39px;
+    font-size:35px;
     background:linear-gradient(145deg,#168cff,#0057d9);
-    border:1px solid rgba(255,255,255,.2);
-    box-shadow:
-        0 14px 35px rgba(0,130,255,.35),
-        inset 0 1px 8px rgba(255,255,255,.18);
+    box-shadow:0 12px 32px rgba(0,130,255,.35);
 }
 
 .badge{
-    display:inline-block;
+    width:max-content;
+    margin:0 auto 9px;
     padding:6px 12px;
     border-radius:20px;
     background:rgba(0,160,255,.12);
@@ -67,28 +62,92 @@ body{
     color:#74d2ff;
     font-size:11px;
     font-weight:bold;
-    letter-spacing:.6px;
-    margin-bottom:10px;
+    letter-spacing:.7px;
 }
 
 h1{
+    text-align:center;
     font-size:25px;
-    margin:5px 0 9px;
+    margin:6px 0 7px;
 }
 
 .sub{
+    text-align:center;
     color:#b8cbe5;
-    font-size:14px;
-    line-height:1.6;
+    font-size:13px;
+    line-height:1.5;
 }
 
+/* STEPS */
+.steps{
+    display:flex;
+    align-items:center;
+    margin:25px 4px 22px;
+}
+
+.step{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-width:58px;
+}
+
+.circle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    color:#7892b0;
+    font-weight:bold;
+}
+
+.step.active .circle{
+    background:linear-gradient(135deg,#0799ff,#075bd8);
+    border-color:#42b4ff;
+    color:#fff;
+    box-shadow:0 7px 20px rgba(0,130,255,.3);
+}
+
+.step.done .circle{
+    background:#087bcb;
+    border-color:#55c5ff;
+    color:#fff;
+}
+
+.step span{
+    margin-top:7px;
+    font-size:10px;
+    color:#7892b0;
+}
+
+.step.active span,
+.step.done span{
+    color:#dff5ff;
+}
+
+.line{
+    height:2px;
+    flex:1;
+    margin:0 5px;
+    margin-bottom:20px;
+    background:rgba(255,255,255,.12);
+}
+
+.line.done{
+    background:#168cff;
+}
+
+/* INFO */
 .info{
-    margin:23px 0 18px;
-    padding:15px 16px;
-    border-radius:19px;
+    padding:14px 15px;
+    border-radius:18px;
     background:rgba(255,255,255,.055);
     border:1px solid rgba(255,255,255,.08);
-    text-align:left;
+    margin-bottom:17px;
 }
 
 .row{
@@ -96,7 +155,7 @@ h1{
     justify-content:space-between;
     align-items:center;
     padding:8px 0;
-    font-size:14px;
+    font-size:13px;
 }
 
 .row + .row{
@@ -112,6 +171,7 @@ h1{
     color:#eaf6ff;
 }
 
+/* BUTTON */
 button{
     width:100%;
     border:0;
@@ -121,11 +181,8 @@ button{
     font-weight:bold;
     color:#fff;
     background:linear-gradient(135deg,#0799ff,#075bd8);
-    box-shadow:
-        0 12px 30px rgba(0,130,255,.30),
-        inset 0 1px 0 rgba(255,255,255,.2);
+    box-shadow:0 12px 30px rgba(0,130,255,.30);
     cursor:pointer;
-    transition:.2s;
 }
 
 button:active{
@@ -137,17 +194,23 @@ button:disabled{
     cursor:not-allowed;
 }
 
+#getFile{
+    display:none;
+}
+
 #status{
-    margin-top:17px;
+    margin-top:15px;
     min-height:22px;
+    text-align:center;
     font-size:13px;
     line-height:1.5;
     color:#c5d9ef;
 }
 
 .small{
-    margin-top:20px;
-    font-size:11px;
+    margin-top:19px;
+    text-align:center;
+    font-size:10px;
     color:#6683a5;
 }
 </style>
@@ -159,12 +222,36 @@ button:disabled{
 
     <div class="logo">🔐</div>
 
-    <div class="badge">SECURE ACCESS</div>
+    <div class="badge">SECURE FILE ACCESS</div>
 
-    <h1>Premium File Unlock</h1>
+    <h1>Unlock Your File</h1>
 
     <div class="sub">
-        Complete the advertisement to securely unlock your requested file.
+        Complete the steps below to access your requested file.
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps">
+
+        <div class="step active" id="step1">
+            <div class="circle">1</div>
+            <span>WATCH</span>
+        </div>
+
+        <div class="line" id="line1"></div>
+
+        <div class="step" id="step2">
+            <div class="circle">2</div>
+            <span>VERIFY</span>
+        </div>
+
+        <div class="line" id="line2"></div>
+
+        <div class="step" id="step3">
+            <div class="circle">3</div>
+            <span>DONE</span>
+        </div>
+
     </div>
 
     <div class="info">
@@ -185,8 +272,12 @@ button:disabled{
         📺 Watch Ad & Unlock
     </button>
 
+    <button id="getFile" onclick="getFile()">
+        📁 GET FILE
+    </button>
+
     <div id="status">
-        Tap the button above to begin.
+        Tap the button above to start.
     </div>
 
     <div class="small">
@@ -196,6 +287,7 @@ button:disabled{
 </div>
 
 <script>
+
 const params = new URLSearchParams(location.search);
 const token = params.get("token");
 
@@ -203,12 +295,21 @@ const API = "https://birmingham-welfare-lobby-calm.trycloudflare.com";
 const BOT = "Flash_File_Share_bot";
 
 const button = document.getElementById("watch");
+const getFileButton = document.getElementById("getFile");
+
 const statusEl = document.getElementById("status");
 const stateEl = document.getElementById("state");
 
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+
+const line1 = document.getElementById("line1");
+const line2 = document.getElementById("line2");
+
 let checking = false;
 
-if (window.Telegram && window.Telegram.WebApp) {
+if(window.Telegram && window.Telegram.WebApp){
     window.Telegram.WebApp.ready();
 }
 
@@ -216,12 +317,40 @@ function status(text){
     statusEl.innerText = text;
 }
 
+function setStep(step){
+
+    if(step >= 1){
+        step1.classList.add("active");
+    }
+
+    if(step >= 2){
+        step1.classList.remove("active");
+        step1.classList.add("done");
+
+        step2.classList.add("active");
+        line1.classList.add("done");
+    }
+
+    if(step >= 3){
+        step2.classList.remove("active");
+        step2.classList.add("done");
+
+        step3.classList.add("active");
+        step3.classList.add("done");
+
+        line2.classList.add("done");
+    }
+}
+
 async function checkUnlock(){
+
     if(!token) return false;
 
     try{
+
         const r = await fetch(
-            API + "/unlock/status?token=" + encodeURIComponent(token),
+            API + "/unlock/status?token=" +
+            encodeURIComponent(token),
             {cache:"no-store"}
         );
 
@@ -230,13 +359,14 @@ async function checkUnlock(){
         const data = await r.json();
 
         if(data.ok && data.unlocked && !data.used){
-            stateEl.innerText = "✅ Unlocked";
-            status("✅ Advertisement verified! File opening...");
+
             return true;
         }
 
     }catch(e){
-        console.log("Unlock status check failed:", e);
+
+        console.log("Unlock status check failed:",e);
+
     }
 
     return false;
@@ -248,8 +378,10 @@ async function waitForVerification(){
 
     checking = true;
 
+    setStep(2);
+
     stateEl.innerText = "⏳ Verifying";
-    status("⏳ Verifying your advertisement...");
+    status("⏳ Verifying advertisement...");
 
     for(let i=0;i<30;i++){
 
@@ -257,55 +389,33 @@ async function waitForVerification(){
 
             checking = false;
 
-            stateEl.innerText = "✅ Unlocked";
-            status("🎉 Advertisement verified! Click GET FILE to continue.");
+            setStep(3);
 
-            button.disabled = false;
-            button.innerText = "✅ GET FILE";
-            button.removeAttribute("onclick");
-            button.onclick = function(){
-                window.location.href =
-                    "https://t.me/" + BOT + "?start=unlock_" +
-                    encodeURIComponent(token);
-            };
+            stateEl.innerText = "✅ Unlocked";
+
+            status("🎉 Verification successful! Your file is ready.");
+
+            button.style.display = "none";
+            getFileButton.style.display = "block";
 
             return;
         }
 
-        await new Promise(r=>setTimeout(r,2000));
+        await new Promise(r => setTimeout(r,2000));
     }
 
     checking = false;
 
     stateEl.innerText = "⚠️ Pending";
-    status("⚠️ Verification is taking a little longer. Please try again.");
+
+    status(
+        "⚠️ Verification is taking longer. " +
+        "Please try again."
+    );
+
+    setStep(1);
 
     button.disabled = false;
-}
-
-// Monetag ad mode is controlled from the bot Admin Panel.
-const AD_MODE_API = "https://api.flashfileshare.cyou/ad-mode";
-
-async function getMonetagAdMode(){
-    try{
-        const response = await fetch(AD_MODE_API, {
-            cache: "no-store"
-        });
-
-        if(!response.ok){
-            throw new Error("Ad mode API failed");
-        }
-
-        const data = await response.json();
-
-        if(data && (data.mode === "pop" || data.mode === "interstitial")){
-            return data.mode;
-        }
-    }catch(error){
-        console.log("Ad mode fetch error:", error);
-    }
-
-    return "pop";
 }
 
 async function watchAd(){
@@ -313,6 +423,7 @@ async function watchAd(){
     if(!token){
 
         status("❌ Invalid unlock session.");
+
         button.disabled = true;
 
         return;
@@ -320,13 +431,18 @@ async function watchAd(){
 
     button.disabled = true;
 
+    setStep(1);
+
     stateEl.innerText = "📺 Ad";
+
     status("⏳ Advertisement loading...");
 
     try{
 
-        const monetagAdMode = await getMonetagAdMode();
-
+        /*
+         * MONETAG CALL
+         * DO NOT CHANGE
+         */
         await show_11773161({
             ymid: token
         });
@@ -337,23 +453,40 @@ async function watchAd(){
 
     }catch(error){
 
-        console.log("Monetag error:", error);
+        console.log("Monetag error:",error);
 
         stateEl.innerText = "🔒 Locked";
 
-        status("❌ Advertisement complete nahi hua. Please try again.");
+        status(
+            "❌ Advertisement complete nahi hua. " +
+            "Please try again."
+        );
 
         button.disabled = false;
     }
 }
 
+function getFile(){
+
+    if(!token) return;
+
+    window.location.href =
+        "https://t.me/" +
+        BOT +
+        "?start=unlock_" +
+        encodeURIComponent(token);
+}
+
 if(!token){
 
     stateEl.innerText = "❌ Invalid";
+
     status("Invalid unlock link.");
+
     button.disabled = true;
 }
+
 </script>
 
 </body>
-</html>
+    </html>
