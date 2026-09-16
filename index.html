@@ -194,6 +194,7 @@ button:disabled{
     cursor:not-allowed;
 }
 
+#verify,
 #getFile{
     display:none;
 }
@@ -268,10 +269,17 @@ button:disabled{
 
     </div>
 
+    <!-- WATCH BUTTON -->
     <button id="watch" onclick="watchAd()">
         📺 Watch Ad & Unlock
     </button>
 
+    <!-- VERIFY BUTTON -->
+    <button id="verify" onclick="verifyUnlock()">
+        ✅ VERIFY
+    </button>
+
+    <!-- GET FILE BUTTON -->
     <button id="getFile" onclick="getFile()">
         📁 GET FILE
     </button>
@@ -295,6 +303,7 @@ const API = "https://birmingham-welfare-lobby-calm.trycloudflare.com";
 const BOT = "Flash_File_Share_bot";
 
 const button = document.getElementById("watch");
+const verifyButton = document.getElementById("verify");
 const getFileButton = document.getElementById("getFile");
 
 const statusEl = document.getElementById("status");
@@ -319,26 +328,36 @@ function status(text){
 
 function setStep(step){
 
-    if(step >= 1){
+    step1.classList.remove("active","done");
+    step2.classList.remove("active","done");
+    step3.classList.remove("active","done");
+
+    line1.classList.remove("done");
+    line2.classList.remove("done");
+
+    if(step === 1){
+
         step1.classList.add("active");
+
     }
 
-    if(step >= 2){
-        step1.classList.remove("active");
-        step1.classList.add("done");
+    if(step === 2){
 
+        step1.classList.add("done");
         step2.classList.add("active");
         line1.classList.add("done");
+
     }
 
-    if(step >= 3){
-        step2.classList.remove("active");
+    if(step === 3){
+
+        step1.classList.add("done");
         step2.classList.add("done");
+        step3.classList.add("active","done");
 
-        step3.classList.add("active");
-        step3.classList.add("done");
-
+        line1.classList.add("done");
         line2.classList.add("done");
+
     }
 }
 
@@ -361,6 +380,7 @@ async function checkUnlock(){
         if(data.ok && data.unlocked && !data.used){
 
             return true;
+
         }
 
     }catch(e){
@@ -372,18 +392,24 @@ async function checkUnlock(){
     return false;
 }
 
-async function waitForVerification(){
+/* VERIFY BUTTON */
+async function verifyUnlock(){
+
+    if(!token) return;
 
     if(checking) return;
 
     checking = true;
 
+    verifyButton.disabled = true;
+
     setStep(2);
 
     stateEl.innerText = "⏳ Verifying";
-    status("⏳ Verifying advertisement...");
 
-    for(let i=0;i<30;i++){
+    status("⏳ Checking advertisement verification...");
+
+    for(let i = 0; i < 15; i++){
 
         if(await checkUnlock()){
 
@@ -393,31 +419,37 @@ async function waitForVerification(){
 
             stateEl.innerText = "✅ Unlocked";
 
-            status("🎉 Verification successful! Your file is ready.");
+            status(
+                "🎉 Verification successful! " +
+                "Your file is ready."
+            );
 
-            button.style.display = "none";
+            verifyButton.style.display = "none";
+
             getFileButton.style.display = "block";
 
             return;
         }
 
-        await new Promise(r => setTimeout(r,2000));
+        await new Promise(
+            r => setTimeout(r,2000)
+        );
     }
 
     checking = false;
 
+    verifyButton.disabled = false;
+
     stateEl.innerText = "⚠️ Pending";
 
     status(
-        "⚠️ Verification is taking longer. " +
-        "Please try again."
+        "⚠️ Verification pending. " +
+        "Please tap VERIFY again."
     );
 
-    setStep(1);
-
-    button.disabled = false;
 }
 
+/* WATCH AD */
 async function watchAd(){
 
     if(!token){
@@ -447,9 +479,23 @@ async function watchAd(){
             ymid: token
         });
 
-        status("✅ Advertisement completed. Verification waiting...");
+        /*
+         * AD COMPLETE
+         * NOW SHOW VERIFY BUTTON
+         */
 
-        await waitForVerification();
+        button.style.display = "none";
+
+        verifyButton.style.display = "block";
+
+        setStep(2);
+
+        stateEl.innerText = "⏳ Waiting";
+
+        status(
+            "✅ Advertisement completed.\n" +
+            "👇 Now tap VERIFY."
+        );
 
     }catch(error){
 
@@ -466,6 +512,7 @@ async function watchAd(){
     }
 }
 
+/* GET FILE */
 function getFile(){
 
     if(!token) return;
@@ -489,4 +536,4 @@ if(!token){
 </script>
 
 </body>
-    </html>
+</html>
