@@ -668,11 +668,17 @@ function getFile(){
 
     status("📁 Opening Telegram...");
 
-    window.location.href =
+    const url =
         "https://t.me/" +
         BOT +
         "?start=unlock_" +
         encodeURIComponent(token);
+
+    if(window.Telegram && Telegram.WebApp && Telegram.WebApp.openTelegramLink){
+        Telegram.WebApp.openTelegramLink(url);
+    }else{
+        window.location.href = url;
+    }
 }
 
 /* INVALID TOKEN */
