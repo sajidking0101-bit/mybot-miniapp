@@ -14,205 +14,240 @@
 *{box-sizing:border-box}
 
 body{
-    margin:0;
-    min-height:100vh;
-    font-family:Arial,sans-serif;
-    background:
-        radial-gradient(circle at 15% 10%,rgba(0,145,255,.30),transparent 35%),
-        radial-gradient(circle at 90% 90%,rgba(0,80,220,.28),transparent 40%),
-        linear-gradient(145deg,#020b1c,#062b5c 52%,#03152f);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:18px;
+margin:0;
+min-height:100vh;
+font-family:Arial,sans-serif;
+background:
+radial-gradient(circle at 10% 0%,#dcefff,transparent 35%),
+radial-gradient(circle at 100% 100%,#b9dcff,transparent 40%),
+linear-gradient(145deg,#ffffff,#eef7ff);
+color:#123b78;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:16px;
 }
 
 .card{
-    width:100%;
-    max-width:430px;
-    padding:28px 20px 24px;
-    border-radius:28px;
-    background:rgba(5,30,65,.82);
-    border:1px solid rgba(95,190,255,.25);
-    box-shadow:0 25px 70px rgba(0,0,0,.55);
-    backdrop-filter:blur(20px);
+width:100%;
+max-width:430px;
+padding:26px 20px 22px;
+border-radius:28px;
+background:rgba(255,255,255,.94);
+border:1px solid #b8d9ff;
+box-shadow:0 20px 60px rgba(30,110,190,.18);
 }
 
 .logo{
-    width:76px;
-    height:76px;
-    margin:0 auto 16px;
-    border-radius:23px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-    background:linear-gradient(145deg,#168cff,#0057d9);
-    box-shadow:0 12px 32px rgba(0,130,255,.35);
+width:76px;
+height:76px;
+margin:0 auto 14px;
+border-radius:23px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+background:linear-gradient(145deg,#2196ff,#0867df);
+box-shadow:0 12px 30px rgba(20,125,235,.28);
 }
 
 .badge{
-    width:max-content;
-    margin:0 auto 9px;
-    padding:6px 12px;
-    border-radius:20px;
-    background:rgba(0,160,255,.12);
-    border:1px solid rgba(80,190,255,.22);
-    color:#74d2ff;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:.7px;
+width:max-content;
+margin:0 auto 8px;
+padding:6px 13px;
+border-radius:20px;
+background:#e8f5ff;
+border:1px solid #a9d5ff;
+color:#1684dc;
+font-size:11px;
+font-weight:bold;
+letter-spacing:.7px;
 }
 
 h1{
-    text-align:center;
-    font-size:25px;
-    margin:6px 0 7px;
+text-align:center;
+font-size:25px;
+margin:6px 0 7px;
+color:#123d7c;
 }
 
 .sub{
-    text-align:center;
-    color:#b8cbe5;
-    font-size:13px;
-    line-height:1.5;
+text-align:center;
+color:#6684a8;
+font-size:13px;
+line-height:1.5;
 }
 
 /* STEPS */
+
 .steps{
-    display:flex;
-    align-items:center;
-    margin:25px 4px 22px;
+display:flex;
+align-items:center;
+margin:25px 2px 20px;
 }
 
 .step{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-width:58px;
+display:flex;
+flex-direction:column;
+align-items:center;
+min-width:58px;
 }
 
 .circle{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    color:#7892b0;
-    font-weight:bold;
+width:42px;
+height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#e8f1fb;
+border:1px solid #c3d7ed;
+color:#8ba2bd;
+font-weight:bold;
+font-size:17px;
 }
 
-.step.active .circle{
-    background:linear-gradient(135deg,#0799ff,#075bd8);
-    border-color:#42b4ff;
-    color:#fff;
-    box-shadow:0 7px 20px rgba(0,130,255,.3);
-}
-
+.step.active .circle,
 .step.done .circle{
-    background:#087bcb;
-    border-color:#55c5ff;
-    color:#fff;
+background:linear-gradient(135deg,#20a0ff,#0872df);
+border-color:#48b2ff;
+color:#fff;
+box-shadow:0 7px 18px rgba(20,130,235,.25);
 }
 
 .step span{
-    margin-top:7px;
-    font-size:10px;
-    color:#7892b0;
+margin-top:7px;
+font-size:10px;
+font-weight:bold;
+color:#8aa0b9;
 }
 
 .step.active span,
 .step.done span{
-    color:#dff5ff;
+color:#174d91;
 }
 
 .line{
-    height:2px;
-    flex:1;
-    margin:0 5px;
-    margin-bottom:20px;
-    background:rgba(255,255,255,.12);
+height:2px;
+flex:1;
+margin:0 5px;
+margin-bottom:19px;
+background:#d6e4f3;
 }
 
 .line.done{
-    background:#168cff;
+background:#168cff;
+}
+
+/* TIMER */
+
+.timer{
+padding:16px;
+margin-bottom:15px;
+border-radius:19px;
+background:linear-gradient(135deg,#f0f8ff,#e5f3ff);
+border:1px solid #a9d2ff;
+text-align:center;
+}
+
+.timerTitle{
+font-size:13px;
+color:#6685a8;
+margin-bottom:3px;
+}
+
+#timer{
+font-size:31px;
+font-weight:bold;
+letter-spacing:2px;
+color:#0874e5;
+}
+
+.timerText{
+font-size:11px;
+color:#7692b0;
+margin-top:3px;
 }
 
 /* INFO */
+
 .info{
-    padding:14px 15px;
-    border-radius:18px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.08);
-    margin-bottom:17px;
+padding:13px 15px;
+border-radius:18px;
+background:#f5faff;
+border:1px solid #d5e7f8;
+margin-bottom:17px;
 }
 
 .row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:8px 0;
-    font-size:13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:8px 0;
+font-size:13px;
 }
 
-.row + .row{
-    border-top:1px solid rgba(255,255,255,.06);
+.row+.row{
+border-top:1px solid #e1edf8;
 }
 
 .label{
-    color:#8fa9c8;
+color:#7893af;
 }
 
 .value{
-    font-weight:bold;
-    color:#eaf6ff;
+font-weight:bold;
+color:#17477f;
 }
 
-/* BUTTON */
+/* BUTTONS */
+
 button{
-    width:100%;
-    border:0;
-    border-radius:17px;
-    padding:17px;
-    font-size:16px;
-    font-weight:bold;
-    color:#fff;
-    background:linear-gradient(135deg,#0799ff,#075bd8);
-    box-shadow:0 12px 30px rgba(0,130,255,.30);
-    cursor:pointer;
+width:100%;
+border:0;
+border-radius:17px;
+padding:16px;
+font-size:16px;
+font-weight:bold;
+color:#fff;
+background:linear-gradient(135deg,#159cff,#0867df);
+box-shadow:0 10px 25px rgba(10,120,230,.25);
+cursor:pointer;
+margin-top:8px;
 }
 
 button:active{
-    transform:scale(.98);
+transform:scale(.98);
 }
 
 button:disabled{
-    opacity:.55;
-    cursor:not-allowed;
+opacity:.55;
+cursor:not-allowed;
 }
 
 #verify,
 #getFile{
-    display:none;
+display:none;
+}
+
+#getFile{
+background:linear-gradient(135deg,#159cff,#075dd2);
 }
 
 #status{
-    margin-top:15px;
-    min-height:22px;
-    text-align:center;
-    font-size:13px;
-    line-height:1.5;
-    color:#c5d9ef;
+margin-top:14px;
+min-height:22px;
+text-align:center;
+font-size:13px;
+line-height:1.5;
+color:#6382a5;
 }
 
 .small{
-    margin-top:19px;
-    text-align:center;
-    font-size:10px;
-    color:#6683a5;
+margin-top:18px;
+text-align:center;
+font-size:10px;
+color:#8ba4bd;
 }
 </style>
 </head>
@@ -221,76 +256,96 @@ button:disabled{
 
 <div class="card">
 
-    <div class="logo">🔐</div>
+<div class="logo">🔐</div>
 
-    <div class="badge">SECURE FILE ACCESS</div>
+<div class="badge">SECURE FILE ACCESS</div>
 
-    <h1>Unlock Your File</h1>
+<h1>Flash File Share</h1>
 
-    <div class="sub">
-        Complete the steps below to access your requested file.
-    </div>
+<div class="sub">
+Complete the steps below to access your requested file.
+</div>
 
-    <!-- STEPS -->
-    <div class="steps">
+<!-- STEPS -->
 
-        <div class="step active" id="step1">
-            <div class="circle">1</div>
-            <span>WATCH</span>
-        </div>
+<div class="steps">
 
-        <div class="line" id="line1"></div>
+<div class="step active" id="step1">
+<div class="circle">1</div>
+<span>WATCH</span>
+</div>
 
-        <div class="step" id="step2">
-            <div class="circle">2</div>
-            <span>VERIFY</span>
-        </div>
+<div class="line" id="line1"></div>
 
-        <div class="line" id="line2"></div>
+<div class="step" id="step2">
+<div class="circle">2</div>
+<span>VERIFY</span>
+</div>
 
-        <div class="step" id="step3">
-            <div class="circle">3</div>
-            <span>DONE</span>
-        </div>
+<div class="line" id="line2"></div>
 
-    </div>
+<div class="step" id="step3">
+<div class="circle">3</div>
+<span>DONE</span>
+</div>
 
-    <div class="info">
+</div>
 
-        <div class="row">
-            <span class="label">Access Status</span>
-            <span class="value" id="state">🔒 Locked</span>
-        </div>
+<!-- TIMER -->
 
-        <div class="row">
-            <span class="label">Security</span>
-            <span class="value">🛡️ Protected</span>
-        </div>
+<div class="timer">
 
-    </div>
+<div class="timerTitle">⏱️ Time Remaining</div>
 
-    <!-- WATCH BUTTON -->
-    <button id="watch" onclick="watchAd()">
-        📺 Watch Ad & Unlock
-    </button>
+<div id="timer">05:00</div>
 
-    <!-- VERIFY BUTTON -->
-    <button id="verify" onclick="verifyUnlock()">
-        ✅ VERIFY
-    </button>
+<div class="timerText">
+Complete the steps within 5 minutes.
+</div>
 
-    <!-- GET FILE BUTTON -->
-    <button id="getFile" onclick="getFile()">
-        📁 GET FILE
-    </button>
+</div>
 
-    <div id="status">
-        Tap the button above to start.
-    </div>
+<!-- STATUS -->
 
-    <div class="small">
-        Flash File Share • Secure Delivery
-    </div>
+<div class="info">
+
+<div class="row">
+<span class="label">Ad Status</span>
+<span class="value" id="adState">⏳ Pending</span>
+</div>
+
+<div class="row">
+<span class="label">Verification</span>
+<span class="value" id="verifyState">⏳ Pending</span>
+</div>
+
+</div>
+
+<!-- WATCH -->
+
+<button id="watch" onclick="watchAd()">
+📺 Watch Ad & Unlock
+</button>
+
+<!-- VERIFY -->
+
+<button id="verify" onclick="verifyUnlock()">
+✅ VERIFY
+</button>
+
+<!-- GET FILE -->
+
+<button id="getFile" onclick="getFile()">
+📁 GET FILE
+</button>
+
+<div id="status">
+Tap Watch Ad & Unlock to start.
+</div>
+
+<div class="small">
+🛡️ Secure • Fast • Reliable
+</div>
 
 </div>
 
@@ -302,12 +357,15 @@ const token = params.get("token");
 const API = "https://birmingham-welfare-lobby-calm.trycloudflare.com";
 const BOT = "Flash_File_Share_bot";
 
-const button = document.getElementById("watch");
+const watchButton = document.getElementById("watch");
 const verifyButton = document.getElementById("verify");
 const getFileButton = document.getElementById("getFile");
 
 const statusEl = document.getElementById("status");
-const stateEl = document.getElementById("state");
+const timerEl = document.getElementById("timer");
+
+const adState = document.getElementById("adState");
+const verifyState = document.getElementById("verifyState");
 
 const step1 = document.getElementById("step1");
 const step2 = document.getElementById("step2");
@@ -317,14 +375,23 @@ const line1 = document.getElementById("line1");
 const line2 = document.getElementById("line2");
 
 let checking = false;
+let timerSeconds = 300;
+let timerInterval = null;
+let adCompleted = false;
+
+/* TELEGRAM */
 
 if(window.Telegram && window.Telegram.WebApp){
     window.Telegram.WebApp.ready();
 }
 
+/* STATUS */
+
 function status(text){
     statusEl.innerText = text;
 }
+
+/* STEP */
 
 function setStep(step){
 
@@ -361,41 +428,175 @@ function setStep(step){
     }
 }
 
+/* TIMER */
+
+function startTimer(){
+
+    if(timerInterval) return;
+
+    timerInterval = setInterval(function(){
+
+        timerSeconds--;
+
+        if(timerSeconds <= 0){
+
+            timerSeconds = 0;
+
+            clearInterval(timerInterval);
+            timerInterval = null;
+
+            if(!getFileButton || getFileButton.style.display !== "block"){
+
+                status("⏰ Time expired. Please open a fresh file link.");
+
+                watchButton.disabled = true;
+                verifyButton.disabled = true;
+
+            }
+        }
+
+        const min = Math.floor(timerSeconds / 60);
+        const sec = timerSeconds % 60;
+
+        timerEl.innerText =
+            String(min).padStart(2,"0") +
+            ":" +
+            String(sec).padStart(2,"0");
+
+    },1000);
+}
+
+/* BACKEND CHECK */
+
 async function checkUnlock(){
 
     if(!token) return false;
 
     try{
 
-        const r = await fetch(
-            API + "/unlock/status?token=" +
-            encodeURIComponent(token),
-            {cache:"no-store"}
+        const controller = new AbortController();
+
+        const timeout = setTimeout(
+            () => controller.abort(),
+            8000
         );
 
-        if(!r.ok) return false;
+        const response = await fetch(
+            API +
+            "/unlock/status?token=" +
+            encodeURIComponent(token),
+            {
+                cache:"no-store",
+                signal:controller.signal
+            }
+        );
 
-        const data = await r.json();
+        clearTimeout(timeout);
 
-        if(data.ok && data.unlocked && !data.used){
+        if(!response.ok) return false;
 
-            return true;
+        const data = await response.json();
 
-        }
+        return !!(
+            data.ok &&
+            data.unlocked &&
+            !data.used
+        );
 
-    }catch(e){
+    }catch(error){
 
-        console.log("Unlock status check failed:",e);
+        console.log(
+            "Verification check:",
+            error
+        );
 
+        return false;
     }
-
-    return false;
 }
 
-/* VERIFY BUTTON */
+/* WATCH AD */
+
+async function watchAd(){
+
+    if(!token){
+
+        status("❌ Invalid unlock session.");
+
+        watchButton.disabled = true;
+
+        return;
+    }
+
+    watchButton.disabled = true;
+
+    startTimer();
+
+    setStep(1);
+
+    adState.innerText = "📺 Watching";
+
+    verifyState.innerText = "⏳ Pending";
+
+    status("⏳ Advertisement loading...");
+
+    try{
+
+        /*
+         * MONETAG
+         * DO NOT CHANGE
+         */
+
+        await show_11773161({
+            ymid:token
+        });
+
+        adCompleted = true;
+
+        adState.innerText = "✅ Completed";
+
+        verifyState.innerText = "🔵 Ready";
+
+        watchButton.style.display = "none";
+
+        verifyButton.style.display = "block";
+
+        setStep(2);
+
+        status(
+            "✅ Advertisement completed. " +
+            "👇 Tap VERIFY."
+        );
+
+    }catch(error){
+
+        console.log(
+            "Monetag error:",
+            error
+        );
+
+        adState.innerText = "⚠️ Not Completed";
+
+        status(
+            "❌ Advertisement complete nahi hua. " +
+            "Please try again."
+        );
+
+        watchButton.disabled = false;
+    }
+}
+
+/* VERIFY */
+
 async function verifyUnlock(){
 
     if(!token) return;
+
+    if(!adCompleted){
+
+        status("⚠️ Pehle advertisement complete karo.");
+
+        return;
+    }
 
     if(checking) return;
 
@@ -405,34 +606,45 @@ async function verifyUnlock(){
 
     setStep(2);
 
-    stateEl.innerText = "⏳ Verifying";
+    verifyState.innerText = "⏳ Checking";
 
-    status("⏳ Checking advertisement verification...");
+    status(
+        "⏳ Checking advertisement verification..."
+    );
 
-    for(let i = 0; i < 15; i++){
+    /*
+     * 30 seconds total
+     * 15 checks × 2 seconds
+     */
 
-        if(await checkUnlock()){
+    for(let i=0;i<15;i++){
+
+        const unlocked = await checkUnlock();
+
+        if(unlocked){
 
             checking = false;
 
             setStep(3);
 
-            stateEl.innerText = "✅ Unlocked";
+            verifyState.innerText = "✅ Verified";
+
+            adState.innerText = "✅ Completed";
+
+            verifyButton.style.display = "none";
+
+            getFileButton.style.display = "block";
 
             status(
                 "🎉 Verification successful! " +
                 "Your file is ready."
             );
 
-            verifyButton.style.display = "none";
-
-            getFileButton.style.display = "block";
-
             return;
         }
 
         await new Promise(
-            r => setTimeout(r,2000)
+            resolve => setTimeout(resolve,2000)
         );
     }
 
@@ -440,82 +652,21 @@ async function verifyUnlock(){
 
     verifyButton.disabled = false;
 
-    stateEl.innerText = "⚠️ Pending";
+    verifyState.innerText = "⚠️ Pending";
 
     status(
         "⚠️ Verification pending. " +
         "Please tap VERIFY again."
     );
-
-}
-
-/* WATCH AD */
-async function watchAd(){
-
-    if(!token){
-
-        status("❌ Invalid unlock session.");
-
-        button.disabled = true;
-
-        return;
-    }
-
-    button.disabled = true;
-
-    setStep(1);
-
-    stateEl.innerText = "📺 Ad";
-
-    status("⏳ Advertisement loading...");
-
-    try{
-
-        /*
-         * MONETAG CALL
-         * DO NOT CHANGE
-         */
-        await show_11773161({
-            ymid: token
-        });
-
-        /*
-         * AD COMPLETE
-         * NOW SHOW VERIFY BUTTON
-         */
-
-        button.style.display = "none";
-
-        verifyButton.style.display = "block";
-
-        setStep(2);
-
-        stateEl.innerText = "⏳ Waiting";
-
-        status(
-            "✅ Advertisement completed.\n" +
-            "👇 Now tap VERIFY."
-        );
-
-    }catch(error){
-
-        console.log("Monetag error:",error);
-
-        stateEl.innerText = "🔒 Locked";
-
-        status(
-            "❌ Advertisement complete nahi hua. " +
-            "Please try again."
-        );
-
-        button.disabled = false;
-    }
 }
 
 /* GET FILE */
+
 function getFile(){
 
     if(!token) return;
+
+    status("📁 Opening Telegram...");
 
     window.location.href =
         "https://t.me/" +
@@ -524,13 +675,16 @@ function getFile(){
         encodeURIComponent(token);
 }
 
+/* INVALID TOKEN */
+
 if(!token){
 
-    stateEl.innerText = "❌ Invalid";
+    adState.innerText = "❌ Invalid";
+    verifyState.innerText = "❌ Invalid";
 
     status("Invalid unlock link.");
 
-    button.disabled = true;
+    watchButton.disabled = true;
 }
 
 </script>
