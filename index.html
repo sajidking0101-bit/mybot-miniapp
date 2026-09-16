@@ -336,7 +336,7 @@ Complete the steps within 5 minutes.
 <!-- GET FILE -->
 
 <button id="getFileBtn" onclick="getFile()">
-📁 GET FILE
+🤖 RETURN TO BOT
 </button>
 
 <div id="status">
@@ -666,23 +666,18 @@ function getFile(){
 
     if(!token) return;
 
-    status("📁 Returning to Telegram...");
-
     const url =
         "https://t.me/" +
         BOT +
         "?start=unlock_" +
         encodeURIComponent(token);
 
-    if(
-        window.Telegram &&
-        Telegram.WebApp &&
-        Telegram.WebApp.openTelegramLink
-    ){
+    if(window.Telegram && Telegram.WebApp){
         Telegram.WebApp.openTelegramLink(url);
-    }else{
-        window.location.href = url;
+        return;
     }
+
+    window.location.href = url;
 }
 
 /* INVALID TOKEN */
