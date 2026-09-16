@@ -1,698 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Flash File Share • Unlock</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secure Access Verification</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #f4f6f9; color: #1c1e21; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Header */
+        .header { background: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e4e6eb; }
+        .header h2 { font-size: 18px; font-weight: 700; }
+        
+        /* Container */
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; width: 100%; flex: 1; }
+        
+        /* Top Badge */
+        .top-badge { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .badge-icon { width: 45px; height: 45px; background: #2563eb; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold; }
+        .badge-text h1 { font-size: 22px; font-weight: 800; color: #111; }
+        .badge-text p { font-size: 12px; color: #65676b; font-weight: 600; letter-spacing: 0.5px; }
 
-<!-- MONETAG: DO NOT CHANGE -->
-<script src="https://libtl.com/sdk.js" data-zone="11773161" data-sdk="show_11773161"></script>
+        /* Blue Banner */
+        .blue-banner { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white; padding: 24px; border-radius: 16px; margin-bottom: 20px; }
+        .blue-banner h3 { font-size: 12px; opacity: 0.9; font-weight: 600; margin-bottom: 8px; letter-spacing: 1px; }
+        .blue-banner h2 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+        .blue-banner p { font-size: 15px; opacity: 0.95; line-height: 1.4; }
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+        /* White Card */
+        .card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        
+        /* Steps Progress */
+        .steps { display: flex; justify-content: space-between; margin-bottom: 24px; }
+        .step-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #8e8e93; }
+        .step-num { width: 28px; height: 28px; border-radius: 50%; background: #e4e6eb; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+        .step-item.active .step-num { background: #2563eb; color: white; }
+        .step-item.active { color: #2563eb; }
+        .step-item.done .step-num { background: #10b981; color: white; }
+        .step-item.done { color: #10b981; }
 
-<style>
-*{box-sizing:border-box}
+        /* Status */
+        .status-box { font-size: 12px; color: #65676b; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.5px; }
+        .status-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .status-left { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; }
+        .status-dot.green { background: #10b981; }
+        .status-right { font-size: 14px; color: #65676b; }
 
-body{
-margin:0;
-min-height:100vh;
-font-family:Arial,sans-serif;
-background:
-radial-gradient(circle at 10% 0%,#dcefff,transparent 35%),
-radial-gradient(circle at 100% 100%,#b9dcff,transparent 40%),
-linear-gradient(145deg,#ffffff,#eef7ff);
-color:#123b78;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:16px;
-}
+        /* Buttons */
+        .btn { width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; margin-bottom: 12px; transition: 0.2s; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:active { background: #1d4ed8; transform: scale(0.98); }
+        .btn-secondary { background: #f0f2f5; color: #1c1e21; }
+        .btn-success { background: #10b981; color: white; }
 
-.card{
-width:100%;
-max-width:430px;
-padding:26px 20px 22px;
-border-radius:28px;
-background:rgba(255,255,255,.94);
-border:1px solid #b8d9ff;
-box-shadow:0 20px 60px rgba(30,110,190,.18);
-}
+        /* Ad Section */
+        .ad-wrapper { background: #111827; border-radius: 16px; padding: 20px; text-align: center; position: relative; margin-bottom: 20px; }
+        .ad-timer { position: absolute; top: 12px; right: 12px; background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+        .ad-main-title { color: #10b981; font-size: 28px; font-weight: 800; margin-bottom: 5px; }
+        .ad-sub-title { color: white; font-size: 15px; }
+        .ad-info-box { background: white; border-radius: 12px; padding: 16px; margin-top: 15px; text-align: left; }
+        .ad-info-box h4 { font-size: 16px; margin-bottom: 8px; }
+        .ad-info-box p { font-size: 14px; color: #4b5563; line-height: 1.4; }
+        .ad-tag { display: inline-block; background: #f3f4f6; padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #9ca3af; margin-top: 8px; }
+        .reward-btn { background: #064e3b; color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-block; margin-top: 12px; }
 
-.logo{
-width:76px;
-height:76px;
-margin:0 auto 14px;
-border-radius:23px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:36px;
-background:linear-gradient(145deg,#2196ff,#0867df);
-box-shadow:0 12px 30px rgba(20,125,235,.28);
-}
+        /* Success */
+        .success-icon { width: 80px; height: 80px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 40px; color: #10b981; }
+        .success-box { background: #d1fae5; padding: 12px; border-radius: 8px; margin-bottom: 16px; text-align: center; }
+        .success-box p { color: #065f46; font-weight: 600; }
 
-.badge{
-width:max-content;
-margin:0 auto 8px;
-padding:6px 13px;
-border-radius:20px;
-background:#e8f5ff;
-border:1px solid #a9d5ff;
-color:#1684dc;
-font-size:11px;
-font-weight:bold;
-letter-spacing:.7px;
-}
-
-h1{
-text-align:center;
-font-size:25px;
-margin:6px 0 7px;
-color:#123d7c;
-}
-
-.sub{
-text-align:center;
-color:#6684a8;
-font-size:13px;
-line-height:1.5;
-}
-
-/* STEPS */
-
-.steps{
-display:flex;
-align-items:center;
-margin:25px 2px 20px;
-}
-
-.step{
-display:flex;
-flex-direction:column;
-align-items:center;
-min-width:58px;
-}
-
-.circle{
-width:42px;
-height:42px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#e8f1fb;
-border:1px solid #c3d7ed;
-color:#8ba2bd;
-font-weight:bold;
-font-size:17px;
-}
-
-.step.active .circle,
-.step.done .circle{
-background:linear-gradient(135deg,#20a0ff,#0872df);
-border-color:#48b2ff;
-color:#fff;
-box-shadow:0 7px 18px rgba(20,130,235,.25);
-}
-
-.step span{
-margin-top:7px;
-font-size:10px;
-font-weight:bold;
-color:#8aa0b9;
-}
-
-.step.active span,
-.step.done span{
-color:#174d91;
-}
-
-.line{
-height:2px;
-flex:1;
-margin:0 5px;
-margin-bottom:19px;
-background:#d6e4f3;
-}
-
-.line.done{
-background:#168cff;
-}
-
-/* TIMER */
-
-.timer{
-padding:16px;
-margin-bottom:15px;
-border-radius:19px;
-background:linear-gradient(135deg,#f0f8ff,#e5f3ff);
-border:1px solid #a9d2ff;
-text-align:center;
-}
-
-.timerTitle{
-font-size:13px;
-color:#6685a8;
-margin-bottom:3px;
-}
-
-#timer{
-font-size:31px;
-font-weight:bold;
-letter-spacing:2px;
-color:#0874e5;
-}
-
-.timerText{
-font-size:11px;
-color:#7692b0;
-margin-top:3px;
-}
-
-/* INFO */
-
-.info{
-padding:13px 15px;
-border-radius:18px;
-background:#f5faff;
-border:1px solid #d5e7f8;
-margin-bottom:17px;
-}
-
-.row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:8px 0;
-font-size:13px;
-}
-
-.row+.row{
-border-top:1px solid #e1edf8;
-}
-
-.label{
-color:#7893af;
-}
-
-.value{
-font-weight:bold;
-color:#17477f;
-}
-
-/* BUTTONS */
-
-button{
-width:100%;
-border:0;
-border-radius:17px;
-padding:16px;
-font-size:16px;
-font-weight:bold;
-color:#fff;
-background:linear-gradient(135deg,#159cff,#0867df);
-box-shadow:0 10px 25px rgba(10,120,230,.25);
-cursor:pointer;
-margin-top:8px;
-}
-
-button:active{
-transform:scale(.98);
-}
-
-button:disabled{
-opacity:.55;
-cursor:not-allowed;
-}
-
-#verify,
-#getFile{
-display:none;
-}
-
-#getFile{
-background:linear-gradient(135deg,#159cff,#075dd2);
-}
-
-#status{
-margin-top:14px;
-min-height:22px;
-text-align:center;
-font-size:13px;
-line-height:1.5;
-color:#6382a5;
-}
-
-.small{
-margin-top:18px;
-text-align:center;
-font-size:10px;
-color:#8ba4bd;
-}
-</style>
+        /* Utility */
+        .hidden { display: none !important; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #e4e6eb; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .footer { text-align: center; padding: 20px; color: #8e8e93; font-size: 12px; }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
-
-<div class="logo">🔐</div>
-
-<div class="badge">SECURE FILE ACCESS</div>
-
-<h1>Flash File Share</h1>
-
-<div class="sub">
-Complete the steps below to access your requested file.
-</div>
-
-<!-- STEPS -->
-
-<div class="steps">
-
-<div class="step active" id="step1">
-<div class="circle">1</div>
-<span>WATCH</span>
-</div>
-
-<div class="line" id="line1"></div>
-
-<div class="step" id="step2">
-<div class="circle">2</div>
-<span>VERIFY</span>
-</div>
-
-<div class="line" id="line2"></div>
-
-<div class="step" id="step3">
-<div class="circle">3</div>
-<span>DONE</span>
-</div>
-
-</div>
-
-<!-- TIMER -->
-
-<div class="timer">
-
-<div class="timerTitle">⏱️ Time Remaining</div>
-
-<div id="timer">05:00</div>
-
-<div class="timerText">
-Complete the steps within 5 minutes.
-</div>
-
-</div>
-
-<!-- STATUS -->
-
-<div class="info">
-
-<div class="row">
-<span class="label">Ad Status</span>
-<span class="value" id="adState">⏳ Pending</span>
-</div>
-
-<div class="row">
-<span class="label">Verification</span>
-<span class="value" id="verifyState">⏳ Pending</span>
-</div>
-
-</div>
-
-<!-- WATCH -->
-
-<button id="watch" onclick="watchAd()">
-📺 Watch Ad & Unlock
-</button>
-
-<!-- VERIFY -->
-
-<button id="verify" onclick="verifyUnlock()">
-✅ VERIFY
-</button>
-
-<!-- GET FILE -->
-
-<button id="getFileBtn" onclick="getFile()">
-🤖 RETURN TO BOT
-</button>
-
-<div id="status">
-Tap Watch Ad & Unlock to start.
-</div>
-
-<div class="small">
-🛡️ Secure • Fast • Reliable
-</div>
-
-</div>
-
-<script>
-
-const params = new URLSearchParams(location.search);
-const token = params.get("token");
-
-const API = "https://api.flashfileshare.cyou";
-const BOT = "Flash_File_Share_bot";
-
-const watchButton = document.getElementById("watch");
-const verifyButton = document.getElementById("verify");
-const getFileButton = document.getElementById("getFileBtn");
-
-const statusEl = document.getElementById("status");
-const timerEl = document.getElementById("timer");
-
-const adState = document.getElementById("adState");
-const verifyState = document.getElementById("verifyState");
-
-const step1 = document.getElementById("step1");
-const step2 = document.getElementById("step2");
-const step3 = document.getElementById("step3");
-
-const line1 = document.getElementById("line1");
-const line2 = document.getElementById("line2");
-
-let checking = false;
-let timerSeconds = 300;
-let timerInterval = null;
-let adCompleted = false;
-
-/* TELEGRAM */
-
-if(window.Telegram && window.Telegram.WebApp){
-    window.Telegram.WebApp.ready();
-}
-
-/* STATUS */
-
-function status(text){
-    statusEl.innerText = text;
-}
-
-/* STEP */
-
-function setStep(step){
-
-    step1.classList.remove("active","done");
-    step2.classList.remove("active","done");
-    step3.classList.remove("active","done");
-
-    line1.classList.remove("done");
-    line2.classList.remove("done");
-
-    if(step === 1){
-
-        step1.classList.add("active");
-
-    }
-
-    if(step === 2){
-
-        step1.classList.add("done");
-        step2.classList.add("active");
-        line1.classList.add("done");
-
-    }
-
-    if(step === 3){
-
-        step1.classList.add("done");
-        step2.classList.add("done");
-        step3.classList.add("active","done");
-
-        line1.classList.add("done");
-        line2.classList.add("done");
-
-    }
-}
-
-/* TIMER */
-
-function startTimer(){
-
-    if(timerInterval) return;
-
-    timerInterval = setInterval(function(){
-
-        timerSeconds--;
-
-        if(timerSeconds <= 0){
-
-            timerSeconds = 0;
-
-            clearInterval(timerInterval);
-            timerInterval = null;
-
-            if(!getFileButton || getFileButton.style.display !== "block"){
-
-                status("⏰ Time expired. Please open a fresh file link.");
-
-                watchButton.disabled = true;
-                verifyButton.disabled = true;
-
-            }
+    <div class="header">
+        <h2>POKEMON</h2>
+        <span style="font-size: 20px;">⋮</span>
+    </div>
+
+    <div class="container">
+        
+        <!-- STEP 1: Initial Screen -->
+        <div id="step1">
+            <div class="top-badge">
+                <div class="badge-icon">✓</div>
+                <div class="badge-text">
+                    <p>SECURE ACCESS</p>
+                    <h1>Verification</h1>
+                </div>
+            </div>
+
+            <div class="blue-banner">
+                <h3>SECURE ACCESS</h3>
+                <h2>Verify to continue</h2>
+                <p>Complete one quick verification before receiving protected content.</p>
+            </div>
+
+            <div class="card">
+                <div class="status-box">CURRENT STATUS</div>
+                <div class="status-row">
+                    <div class="status-left">
+                        <div class="status-dot"></div>
+                        <span>Not verified</span>
+                    </div>
+                    <div class="status-right">Action required</div>
+                </div>
+
+                <button class="btn btn-primary" onclick="goToStep2()">▶ Start verification</button>
+                <button class="btn btn-secondary">How it works</button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Ad Watching Screen -->
+        <div id="step2" class="hidden">
+            <div class="steps">
+                <div class="step-item done"><div class="step-num">✓</div> Ready</div>
+                <div class="step-item active"><div class="step-num">2</div> Watch</div>
+                <div class="step-item"><div class="step-num">3</div> Confirm</div>
+            </div>
+
+            <div class="card">
+                <div class="status-box">STEP 2 OF 3</div>
+                <h2 style="margin-bottom: 20px;">Complete the verification</h2>
+                
+                <div class="spinner"></div>
+                <p style="text-align: center; color: #65676b; margin-bottom: 20px;">Waiting for the rewarded experience...</p>
+
+                <div class="ad-wrapper">
+                    <div class="ad-timer" id="timer">00:15</div>
+                    <div class="ad-main-title">Play money</div>
+                    <div class="ad-sub-title">practice 1000x, no deposit</div>
+                    
+                    <div class="ad-info-box">
+                        <h4>Play money: practice 1000x</h4>
+                        <p>Try 1000x leverage with play money first. No deposit, unlimited refills. The channel shows how.</p>
+                        <span class="ad-tag">Ad</span>
+                        <br>
+                        <div class="reward-btn">⌄ Click to get the reward!</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="continueBtn" disabled style="background: #9ca3af;" onclick="goToStep3()">Continue</button>
+                <p style="text-align: center; font-size: 12px; color: #8e8e93; margin-top: 10px;">Please keep Telegram open and let the rewarded experience finish.</p>
+            </div>
+        </div>
+
+        <!-- STEP 3: Success Screen -->
+        <div id="step3" class="hidden">
+            <div class="steps">
+                <div class="step-item done"><div class="step-num">✓</div> Ready</div>
+                <div class="step-item done"><div class="step-num">✓</div> Watch</div>
+                <div class="step-item active"><div class="step-num">3</div> Confirm</div>
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <div class="success-icon">✓</div>
+                <div class="status-box">STEP 3 OF 3</div>
+                <h2 style="margin-bottom: 16px;">Verification complete!</h2>
+                
+                <div class="success-box">
+                    <p>Your access has been unlocked.</p>
+                </div>
+
+                <p style="color: #65676b; font-size: 14px; margin-bottom: 24px;">Verified until Sep 17, 2026, 10:50 PM</p>
+
+                <button class="btn btn-success" onclick="getFile()"> Get File</button>
+                <button class="btn btn-secondary">View status</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        🔒 Secure session • Telegram verified
+    </div>
+
+    <script>
+        // Step 1 to Step 2 transition
+        function goToStep2() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            startTimer();
         }
 
-        const min = Math.floor(timerSeconds / 60);
-        const sec = timerSeconds % 60;
-
-        timerEl.innerText =
-            String(min).padStart(2,"0") +
-            ":" +
-            String(sec).padStart(2,"0");
-
-    },1000);
-}
-
-/* BACKEND CHECK */
-
-async function checkUnlock(){
-
-    if(!token) return false;
-
-    try{
-
-        const controller = new AbortController();
-
-        const timeout = setTimeout(
-            () => controller.abort(),
-            8000
-        );
-
-        const response = await fetch(
-            API +
-            "/unlock/status?token=" +
-            encodeURIComponent(token),
-            {
-                cache:"no-store",
-                signal:controller.signal
-            }
-        );
-
-        clearTimeout(timeout);
-
-        if(!response.ok) return false;
-
-        const data = await response.json();
-
-        return !!(
-            data.ok &&
-            data.unlocked &&
-            !data.used
-        );
-
-    }catch(error){
-
-        console.log(
-            "Verification check:",
-            error
-        );
-
-        return false;
-    }
-}
-
-/* WATCH AD */
-
-async function watchAd(){
-
-    if(!token){
-
-        status("❌ Invalid unlock session.");
-
-        watchButton.disabled = true;
-
-        return;
-    }
-
-    watchButton.disabled = true;
-
-    startTimer();
-
-    setStep(1);
-
-    adState.innerText = "📺 Watching";
-
-    verifyState.innerText = "⏳ Pending";
-
-    status("⏳ Advertisement loading...");
-
-    try{
-
-        /*
-         * MONETAG
-         * DO NOT CHANGE
-         */
-
-        await show_11773161({
-            ymid:token
-        });
-
-        adCompleted = true;
-
-        adState.innerText = "✅ Completed";
-
-        verifyState.innerText = "🔵 Ready";
-
-        watchButton.style.display = "none";
-
-        verifyButton.style.display = "block";
-
-        setStep(2);
-
-        status(
-            "✅ Advertisement completed. " +
-            "👇 Tap VERIFY."
-        );
-
-    }catch(error){
-
-        console.log(
-            "Monetag error:",
-            error
-        );
-
-        adState.innerText = "⚠️ Not Completed";
-
-        status(
-            "❌ Advertisement complete nahi hua. " +
-            "Please try again."
-        );
-
-        watchButton.disabled = false;
-    }
-}
-
-/* VERIFY */
-
-async function verifyUnlock(){
-
-    if(!token) return;
-
-    if(!adCompleted){
-
-        status("⚠️ Pehle advertisement complete karo.");
-
-        return;
-    }
-
-    if(checking) return;
-
-    checking = true;
-
-    verifyButton.disabled = true;
-
-    setStep(2);
-
-    verifyState.innerText = "⏳ Checking";
-
-    status(
-        "⏳ Checking advertisement verification..."
-    );
-
-    /*
-     * 30 seconds total
-     * 15 checks × 2 seconds
-     */
-
-    for(let i=0;i<15;i++){
-
-        const unlocked = await checkUnlock();
-
-        if(unlocked){
-
-            checking = false;
-
-            setStep(3);
-
-            verifyState.innerText = "✅ Verified";
-
-            adState.innerText = "✅ Completed";
-
-            verifyButton.style.display = "none";
-
-            getFileButton.style.display = "block";
-
-            status(
-                "🎉 Verification successful! " +
-                "Your file is ready."
-            );
-
-            return;
+        // Timer Logic for Ad
+        function startTimer() {
+            let timeLeft = 15;
+            const timerElement = document.getElementById('timer');
+            const continueBtn = document.getElementById('continueBtn');
+
+            const countdown = setInterval(() => {
+                timeLeft--;
+                
+                // Format time (00:14, 00:13...)
+                let seconds = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+                timerElement.innerText = `00:${seconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.innerText = "00:00";
+                    // Enable Continue button and change color
+                    continueBtn.disabled = false;
+                    continueBtn.style.background = "#2563eb";
+                }
+            }, 1000);
         }
 
-        await new Promise(
-            resolve => setTimeout(resolve,2000)
-        );
-    }
+        // Step 2 to Step 3 transition
+        function goToStep3() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
 
-    checking = false;
-
-    verifyButton.disabled = false;
-
-    verifyState.innerText = "⚠️ Pending";
-
-    status(
-        "⚠️ Verification pending. " +
-        "Please tap VERIFY again."
-    );
-}
-
-/* GET FILE */
-
-function getFile(){
-
-    if(!token) return;
-
-    const url =
-        "https://t.me/" +
-        BOT +
-        "?start=unlock_" +
-        encodeURIComponent(token);
-
-    if(window.Telegram && Telegram.WebApp){
-        Telegram.WebApp.openTelegramLink(url);
-        return;
-    }
-
-    window.location.href = url;
-}
-
-/* INVALID TOKEN */
-
-if(!token){
-
-    adState.innerText = "❌ Invalid";
-    verifyState.innerText = "❌ Invalid";
-
-    status("Invalid unlock link.");
-
-    watchButton.disabled = true;
-}
-
-</script>
-
+        // Get File Button Action
+        function getFile() {
+            // Yahan par Telegram WebApp close ho jayega ya bot ko signal jayega
+            // Agar tum Telegram Mini App use kar rahe ho:
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.close();
+            } else {
+                // Fallback: just close window or redirect
+                window.close();
+                alert("Verification Successful! Check your Telegram Bot for the file.");
+            }
+        }
+    </script>
 </body>
-</html>
+    </html>
