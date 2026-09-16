@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Secure Access Verification</title>
+    <title>FLASH FILE SHARE - Verification</title>
+    
+    <!-- MONETAG SDK -->
+    <script src='//libtl.com/sdk.js' data-zone='11773161' data-sdk='show_11773161'></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #f4f6f9; color: #1c1e21; min-height: 100vh; display: flex; flex-direction: column; }
@@ -75,12 +79,24 @@
         .spinner { width: 40px; height: 40px; border: 4px solid #e4e6eb; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .footer { text-align: center; padding: 20px; color: #8e8e93; font-size: 12px; }
+        
+        /* Monetag Ad Container */
+        .monetag-ad-container {
+            min-height: 250px;
+            background: #1f2937;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h2>POKEMON</h2>
+        <h2>FLASH FILE SHARE</h2>
         <span style="font-size: 20px;">⋮</span>
     </div>
 
@@ -132,17 +148,22 @@
                 <div class="spinner"></div>
                 <p style="text-align: center; color: #65676b; margin-bottom: 20px;">Waiting for the rewarded experience...</p>
 
+                <!-- MONETAG AD SECTION -->
                 <div class="ad-wrapper">
                     <div class="ad-timer" id="timer">00:15</div>
-                    <div class="ad-main-title">Play money</div>
-                    <div class="ad-sub-title">practice 1000x, no deposit</div>
+                    
+                    <!-- Monetag Ad Container -->
+                    <div class="monetag-ad-container" id="monetag-ad">
+                        <!-- Monetag SDK will load ad here -->
+                    </div>
+                    
+                    <div class="ad-main-title" style="font-size: 20px;">Watch Ad to Unlock</div>
+                    <div class="ad-sub-title" style="color: #9ca3af; font-size: 14px;">Please wait 15 seconds...</div>
                     
                     <div class="ad-info-box">
-                        <h4>Play money: practice 1000x</h4>
-                        <p>Try 1000x leverage with play money first. No deposit, unlimited refills. The channel shows how.</p>
-                        <span class="ad-tag">Ad</span>
-                        <br>
-                        <div class="reward-btn">⌄ Click to get the reward!</div>
+                        <h4>📢 Advertisement</h4>
+                        <p>Please watch this short advertisement to support us and unlock your file instantly.</p>
+                        <span class="ad-tag">Sponsored by Monetag</span>
                     </div>
                 </div>
 
@@ -187,6 +208,13 @@
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step2').classList.remove('hidden');
             startTimer();
+            
+            // Trigger Monetag ad when step 2 loads
+            setTimeout(function() {
+                if (typeof show_11773161 === 'function') {
+                    show_11773161();
+                }
+            }, 500);
         }
 
         // Timer Logic for Ad
@@ -221,15 +249,13 @@
         // Get File Button Action
         function getFile() {
             // Yahan par Telegram WebApp close ho jayega ya bot ko signal jayega
-            // Agar tum Telegram Mini App use kar rahe ho:
             if (window.Telegram && window.Telegram.WebApp) {
                 window.Telegram.WebApp.close();
             } else {
-                // Fallback: just close window or redirect
                 window.close();
                 alert("Verification Successful! Check your Telegram Bot for the file.");
             }
         }
     </script>
 </body>
-    </html>
+                        </html>
