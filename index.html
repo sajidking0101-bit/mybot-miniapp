@@ -6,6 +6,9 @@
     <title>FLASH FILE SHARE - Verification</title>
     
     <!-- MONETAG SDK -->
+<script>
+const token = new URLSearchParams(window.location.search).get("token") || "";
+</script>
     <script src='//libtl.com/sdk.js' data-zone='11773161' data-sdk='show_11773161'></script>
 <script>const params = new URLSearchParams(window.location.search); const token = params.get("token");</script>
     
@@ -204,59 +207,79 @@
     </div>
 
     <script>
-        // Step 1 to Step 2 transition
-        function goToStep2() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
-            startTimer();
-            
-            // Trigger Monetag ad when step 2 loads
-            setTimeout(function() {
-                if (typeof show_11773161 === 'function') {
-                    show_11773161({ ymid: token });
-                }
-            }, 500);
+let timeLeft = 15;
+let countdown = null;
+
+const timerElement = document.getElementById('timer');
+const continueBtn = document.getElementById('continueBtn');
+
+function goToStep2() {
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+
+    timeLeft = 15;
+    timerElement.innerText = "00:15";
+    continueBtn.disabled = true;
+    continueBtn.style.background = "#9ca3af";
+
+    if (typeof show_11773161 === 'function') {
+        show_11773161({
+            ymid: token,
+            requestVar: "file_unlock"
+        }).then(function(result) {
+            console.log("Monetag completed:", result);
+        }).catch(function(error) {
+            console.log("Monetag error:", error);
+        });
+    } else {
+        console.log("Monetag SDK not loaded");
+    }
+
+    startTimer();
+}
+
+function startTimer() {
+    if (countdown) clearInterval(countdown);
+
+    countdown = setInterval(function() {
+        timeLeft--;
+
+        let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
+        timerElement.innerText = "00:" + seconds;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            countdown = null;
+            timerElement.innerText = "00:00";
+            continueBtn.disabled = false;
+            continueBtn.style.background = "#2563eb";
         }
+    }, 1000);
+}
 
-        // Timer Logic for Ad
-        function startTimer() {
-            let timeLeft = 15;
-            const timerElement = document.getElementById('timer');
-            const continueBtn = document.getElementById('continueBtn');
+function goToStep3() {
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step3').classList.remove('hidden');
+}
 
-            const countdown = setInterval(() => {
-                timeLeft--;
-                
-                // Format time (00:14, 00:13...)
-                let seconds = timeLeft < 10 ? '0' + timeLeft : timeLeft;
-                timerElement.innerText = `00:${seconds}`;
+function getFile() {
+    if (!token) {
+        alert("Invalid verification session.");
+        return;
+    }
 
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timerElement.innerText = "00:00";
-                    // Enable Continue button and change color
-                    continueBtn.disabled = false;
-                    continueBtn.style.background = "#2563eb";
-                }
-            }, 1000);
-        }
+    const url =
+        "https://t.me/Flash_File_Share_bot?start=unlock_" +
+        encodeURIComponent(token);
 
-        // Step 2 to Step 3 transition
-        function goToStep3() {
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step3').classList.remove('hidden');
-        }
-
-        // Get File Button Action
-        function getFile() {
-            // Yahan par Telegram WebApp close ho jayega ya bot ko signal jayega
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.close();
-            } else {
-                window.close();
-                alert("Verification Successful! Check your Telegram Bot for the file.");
-            }
-        }
-    </script>
+    if (window.Telegram &&
+        window.Telegram.WebApp &&
+        window.Telegram.WebApp.openTelegramLink) {
+        window.Telegram.WebApp.openTelegramLink(url);
+    } else {
+        window.location.href = url;
+    }
+}
+</script>
 </body>
                         </html>
