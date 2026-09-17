@@ -272,12 +272,13 @@ function getFile() {
         "https://t.me/Flash_File_Share_bot?start=unlock_" +
         encodeURIComponent(token);
 
-    if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.openTelegramLink(url);
-        window.Telegram.WebApp.close();
-    } else {
-        window.location.href = url;
-    }
+    window.open(url, "_blank");
+
+    setTimeout(function() {
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.close();
+        }
+    }, 300);
 }
 </script>
 </body>
