@@ -268,17 +268,16 @@ function getFile() {
         return;
     }
 
-    const url =
-        "https://t.me/Flash_File_Share_bot?start=unlock_" +
-        encodeURIComponent(token);
+    const url = "https://t.me/Flash_File_Share_bot?start=unlock_" + encodeURIComponent(token);
 
-    window.open(url, "_blank");
-
-    setTimeout(function() {
-        if (window.Telegram && window.Telegram.WebApp) {
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.openTelegramLink(url);
+        setTimeout(function() {
             window.Telegram.WebApp.close();
-        }
-    }, 300);
+        }, 500);
+    } else {
+        window.location.href = url;
+    }
 }
 </script>
 </body>
