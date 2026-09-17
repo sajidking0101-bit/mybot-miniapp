@@ -273,9 +273,18 @@ function getFile() {
         encodeURIComponent(token);
 
     if (window.Telegram &&
-        window.Telegram.WebApp &&
-        window.Telegram.WebApp.openTelegramLink) {
-        window.Telegram.WebApp.openTelegramLink(url);
+        window.Telegram.WebApp) {
+
+        if (window.Telegram.WebApp.openTelegramLink) {
+            window.Telegram.WebApp.openTelegramLink(url);
+
+            setTimeout(function() {
+                window.Telegram.WebApp.close();
+            }, 700);
+        } else {
+            window.location.href = url;
+        }
+
     } else {
         window.location.href = url;
     }
