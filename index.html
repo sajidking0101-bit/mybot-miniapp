@@ -309,7 +309,9 @@ function getFile() {
 
     if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.openTelegramLink(url);
-        window.Telegram.WebApp.close();
+        setTimeout(function() {
+            window.Telegram.WebApp.close();
+        }, 800);
     } else {
         window.location.href = url;
     }
