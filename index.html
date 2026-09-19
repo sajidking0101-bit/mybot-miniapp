@@ -10,7 +10,6 @@
 const token = new URLSearchParams(window.location.search).get("token") || "";
 </script>
     <script src='//libtl.com/sdk.js' data-zone='11773161' data-sdk='show_11773161'></script>
-<script>const params = new URLSearchParams(window.location.search); const token = params.get("token");</script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -155,6 +154,9 @@ const token = new URLSearchParams(window.location.search).get("token") || "";
                 <!-- MONETAG AD SECTION -->
                 <div class="ad-wrapper">
                     <div class="ad-timer" id="timer">00:15</div>
+                    <div id="verifyStatus" style="text-align:center; margin:12px 0; font-size:15px; font-weight:600; color:#f59e0b;">
+                        ⏳ Waiting for advertisement verification...
+                    </div>
                     
                     <!-- Monetag Ad Container -->
                     <div class="monetag-ad-container" id="monetag-ad">
@@ -222,6 +224,10 @@ function goToStep2() {
     continueBtn.disabled = true;
     continueBtn.style.background = "#9ca3af";
 
+    const verifyStatus = document.getElementById("verifyStatus");
+    verifyStatus.innerText = "⏳ Waiting for advertisement verification...";
+    verifyStatus.style.color = "#f59e0b";
+
     if (typeof show_11773161 === 'function') {
         show_11773161({
             ymid: token,
@@ -231,11 +237,44 @@ function goToStep2() {
         }).catch(function(error) {
             console.log("Monetag error:", error);
         });
-    } else {
-        console.log("Monetag SDK not loaded");
     }
 
-    startTimer();
+    checkUnlockStatus();
+}
+
+function checkUnlockStatus() {
+    if (!token) return;
+
+    fetch("https://api.flashfileshare.cyou/unlock/status?token=" + encodeURIComponent(token), {
+        cache: "no-store"
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log("Unlock status:", data);
+
+        if (data.unlocked === true) {
+            const verifyStatus = document.getElementById("verifyStatus");
+            verifyStatus.innerText = "✅ Verified! Advertisement completed.";
+            verifyStatus.style.color = "#22c55e";
+
+            continueBtn.disabled = false;
+            continueBtn.style.background = "#2563eb";
+
+            if (countdown) {
+                clearInterval(countdown);
+                countdown = null;
+            }
+            timerElement.innerText = "✅";
+        } else {
+            setTimeout(checkUnlockStatus, 1000);
+        }
+    })
+    .catch(function(error) {
+        console.log("Verification check error:", error);
+        setTimeout(checkUnlockStatus, 2000);
+    });
 }
 
 function startTimer() {
@@ -251,8 +290,6 @@ function startTimer() {
             clearInterval(countdown);
             countdown = null;
             timerElement.innerText = "00:00";
-            continueBtn.disabled = false;
-            continueBtn.style.background = "#2563eb";
         }
     }, 1000);
 }
