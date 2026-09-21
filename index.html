@@ -307,7 +307,8 @@ function getFile() {
         return;
     }
 
-    const url = "https://t.me/Flash_File_Share_bot?start=unlock_" + encodeURIComponent(token);
+    const startType = adType === "daily_bonus" ? "daily_" : "unlock_";
+    const url = "https://t.me/Flash_File_Share_bot?start=" + startType + encodeURIComponent(token);
 
     if (window.Telegram && window.Telegram.WebApp) {
         window.Telegram.WebApp.openTelegramLink(url);
