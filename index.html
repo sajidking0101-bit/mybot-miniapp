@@ -7,7 +7,9 @@
     
     <!-- MONETAG SDK -->
 <script>
-const token = new URLSearchParams(window.location.search).get("token") || "";
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token") || "";
+const adType = params.get("type") || "file_unlock";
 </script>
     <script src='//libtl.com/sdk.js' data-zone='11773161' data-sdk='show_11773161'></script>
     
@@ -231,7 +233,7 @@ function goToStep2() {
     if (typeof show_11773161 === 'function') {
         show_11773161({
             ymid: token,
-            requestVar: "file_unlock"
+            requestVar: adType
         }).then(function(result) {
             console.log("Monetag completed:", result);
         }).catch(function(error) {
