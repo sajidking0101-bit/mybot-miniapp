@@ -175,7 +175,7 @@ const adType = params.get("type") || "file_unlock";
                     </div>
                 </div>
 
-                <button class="btn btn-success" id="continueBtn" style="display:none;" onclick="getFile()">📥 GET FILE</button>
+                <button class="btn btn-success" id="continueBtn" style="display:none;" onclick="goToStep3()">➡️ CONTINUE</button>
             </div>
         </div>
 
@@ -190,16 +190,15 @@ const adType = params.get("type") || "file_unlock";
             <div class="card" style="text-align: center;">
                 <div class="success-icon">✓</div>
                 <div class="status-box">STEP 3 OF 3</div>
-                <h2 style="margin-bottom: 16px;">Verification complete!</h2>
+                <h2 style="margin-bottom: 16px;">🎉 Ad Completed!</h2>
                 
                 <div class="success-box">
-                    <p>Your access has been unlocked.</p>
+                    <p>✅ Your file is already unlocked.</p>
                 </div>
 
-                <p style="color: #65676b; font-size: 14px; margin-bottom: 24px;">Verified until Sep 17, 2026, 10:50 PM</p>
+                <p style="color: #65676b; font-size: 14px; line-height: 1.6; margin-bottom: 24px;">Tap CONTINUE to return to the bot and receive your file.<br><br>⚠️ If CONTINUE doesn't work, simply press your phone's Back button. Your file is already unlocked and will be sent to you.</p>
 
-                <button class="btn btn-success" onclick="getFile()"> Get File</button>
-                <button class="btn btn-secondary">View status</button>
+                <button class="btn btn-success" onclick="getFile()">➡️ CONTINUE TO BOT</button>
             </div>
         </div>
 
@@ -214,7 +213,7 @@ let timeLeft = 15;
 let countdown = null;
 
 const timerElement = document.getElementById('timer');
-const continueBtn = null;
+const continueBtn = document.getElementById("continueBtn");
 
 function goToStep2() {
     document.getElementById('step1').classList.add('hidden');
@@ -264,7 +263,7 @@ function checkUnlockStatus() {
                 countdown = null;
             }
             timerElement.innerText = "✅";
-            setTimeout(function(){ getFile(); }, 500);
+
         } else {
             setTimeout(checkUnlockStatus, 1000);
         }
