@@ -219,10 +219,16 @@ function goToStep2() {
     document.getElementById('step1').classList.add('hidden');
     document.getElementById('step2').classList.remove('hidden');
 
+    timeLeft = 15;
+    timerElement.innerText = "00:15";
+    startTimer();
 
     const verifyStatus = document.getElementById("verifyStatus");
     verifyStatus.innerText = "⏳ Waiting for advertisement verification...";
     verifyStatus.style.color = "#f59e0b";
+
+    continueBtn.style.display = "none";
+    continueBtn.disabled = true;
 
     if (typeof show_11773161 === 'function') {
         show_11773161({
@@ -252,17 +258,20 @@ function checkUnlockStatus() {
 
         if (data.unlocked === true) {
             const verifyStatus = document.getElementById("verifyStatus");
-            verifyStatus.innerText = "✅ Verified! Advertisement completed.";
-            verifyStatus.style.color = "#22c55e";
 
-            continueBtn.disabled = false;
-            continueBtn.style.display = "block";
+            verifyStatus.innerText = "✅ Advertisement completed! Your file is unlocked.";
+            verifyStatus.style.color = "#22c55e";
 
             if (countdown) {
                 clearInterval(countdown);
                 countdown = null;
             }
+
             timerElement.innerText = "✅";
+
+            continueBtn.disabled = false;
+            continueBtn.style.display = "block";
+            continueBtn.innerText = "➡️ CONTINUE";
 
         } else {
             setTimeout(checkUnlockStatus, 1000);
