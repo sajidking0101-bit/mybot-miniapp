@@ -175,8 +175,7 @@ const adType = params.get("type") || "file_unlock";
                     </div>
                 </div>
 
-                <button class="btn btn-primary" id="continueBtn" disabled style="background: #9ca3af;" onclick="getFile()">Continue</button>
-                <p style="text-align: center; font-size: 12px; color: #8e8e93; margin-top: 10px;">Please keep Telegram open and let the rewarded experience finish.</p>
+                <button class="btn btn-success" id="continueBtn" style="display:none;" onclick="getFile()">📥 GET FILE</button>
             </div>
         </div>
 
@@ -215,16 +214,13 @@ let timeLeft = 15;
 let countdown = null;
 
 const timerElement = document.getElementById('timer');
-const continueBtn = document.getElementById('continueBtn');
+const continueBtn = null;
 
 function goToStep2() {
     document.getElementById('step1').classList.add('hidden');
     document.getElementById('step2').classList.remove('hidden');
 
-    timeLeft = 15;
-    timerElement.innerText = "00:15";
-    continueBtn.disabled = true;
-    continueBtn.style.background = "#9ca3af";
+    continueBtn.style.display = "none";
 
     const verifyStatus = document.getElementById("verifyStatus");
     verifyStatus.innerText = "⏳ Waiting for advertisement verification...";
@@ -262,13 +258,14 @@ function checkUnlockStatus() {
             verifyStatus.style.color = "#22c55e";
 
             continueBtn.disabled = false;
-            continueBtn.style.background = "#2563eb";
+            continueBtn.style.display = "block";
 
             if (countdown) {
                 clearInterval(countdown);
                 countdown = null;
             }
             timerElement.innerText = "✅";
+            setTimeout(function(){ getFile(); }, 500);
         } else {
             setTimeout(checkUnlockStatus, 1000);
         }
