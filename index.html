@@ -233,12 +233,30 @@ function goToStep2() {
     if (typeof show_11773161 === 'function') {
         show_11773161({
             ymid: token,
-            requestVar: token
+            requestVar: "unlock_file"
         }).then(function(result) {
-            checkUnlockStatus();
             console.log("Monetag completed:", result);
+
+            if (result && result.reward_event_type === "valued") {
+                verifyStatus.innerText = "✅ Advertisement completed! Your file is unlocked.";
+                verifyStatus.style.color = "#22c55e";
+
+                if (countdown) {
+                    clearInterval(countdown);
+                    countdown = null;
+                }
+
+                timerElement.innerText = "✅";
+                continueBtn.disabled = false;
+                continueBtn.style.display = "block";
+                continueBtn.innerText = "➡️ CONTINUE";
+            }
+
+            checkUnlockStatus();
         }).catch(function(error) {
             console.log("Monetag error:", error);
+            verifyStatus.innerText = "❌ Advertisement verification failed. Please try again.";
+            verifyStatus.style.color = "#ef4444";
         });
     }
 
