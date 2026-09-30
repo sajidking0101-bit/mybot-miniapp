@@ -235,6 +235,7 @@ function goToStep2() {
             ymid: token,
             requestVar: adType
         }).then(function(result) {
+            checkUnlockStatus();
             console.log("Monetag completed:", result);
         }).catch(function(error) {
             console.log("Monetag error:", error);
