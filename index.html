@@ -233,7 +233,7 @@ function goToStep2() {
     if (typeof show_11773161 === 'function') {
         show_11773161({
             ymid: token,
-            requestVar: adType
+            requestVar: token
         }).then(function(result) {
             checkUnlockStatus();
             console.log("Monetag completed:", result);
