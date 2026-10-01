@@ -96,7 +96,178 @@ const adType = params.get("type") || "file_unlock";
             justify-content: center;
             overflow: hidden;
         }
-    </style>
+    
+/* CLEAN LIGHT PREMIUM UNLOCK */
+.clean-light-unlock{
+    padding:8px 2px 18px;
+    color:#101828;
+}
+.cl-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 4px 20px;
+}
+.cl-logo{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:linear-gradient(135deg,#20a8ff,#2563eb);
+    box-shadow:0 7px 18px rgba(37,99,235,.22);
+}
+.cl-brand{
+    font-size:15px;
+    font-weight:850;
+    letter-spacing:.2px;
+}
+.cl-subbrand{
+    color:#667085;
+    font-size:12px;
+    margin-top:2px;
+}
+.cl-step{
+    display:inline-block;
+    padding:7px 14px;
+    border-radius:20px;
+    background:#e7f2ff;
+    color:#1769d1;
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.5px;
+    margin:4px 0 14px;
+}
+.cl-title{
+    text-align:center;
+    padding:0 12px 18px;
+}
+.cl-title h2{
+    margin:0 0 7px;
+    font-size:28px;
+    font-weight:850;
+    letter-spacing:-.6px;
+}
+.cl-title p{
+    margin:0 auto;
+    max-width:300px;
+    color:#667085;
+    font-size:13px;
+    line-height:1.55;
+}
+.cl-ad-card{
+    background:#ffffff;
+    border:1px solid #dce7f5;
+    border-radius:22px;
+    padding:18px 15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(16,24,40,.08);
+}
+.cl-ad-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    color:#16734a;
+    background:#e9f9f0;
+    border:1px solid #c9efd9;
+    border-radius:20px;
+    padding:8px 11px;
+    font-size:10px;
+    font-weight:850;
+    letter-spacing:.6px;
+}
+.cl-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#16a765;
+    box-shadow:0 0 7px rgba(22,167,101,.5);
+}
+.cl-play{
+    width:60px;
+    height:60px;
+    margin:22px auto 12px;
+    border-radius:19px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:22px;
+    padding-left:2px;
+    background:linear-gradient(135deg,#2588ff,#2563eb);
+    box-shadow:0 9px 22px rgba(37,99,235,.24);
+}
+.cl-ad-card h3{
+    margin:0 0 7px;
+    font-size:20px;
+    font-weight:800;
+}
+.cl-ad-text{
+    color:#667085;
+    font-size:13px;
+    line-height:1.6;
+    max-width:285px;
+    margin:0 auto 15px;
+}
+.cl-timer{
+    display:inline-block;
+    min-width:76px;
+    padding:8px 14px;
+    border-radius:12px;
+    background:#eef6ff;
+    border:1px solid #d3e6ff;
+    color:#1769d1;
+    font-size:19px;
+    font-weight:850;
+    letter-spacing:1.5px;
+}
+.cl-status{
+    min-height:20px;
+    margin:14px 0 9px;
+    color:#b7791f;
+    font-size:12px;
+    font-weight:650;
+}
+.cl-ad-card .monetag-ad-container{
+    min-height:50px;
+    margin:8px 0;
+}
+.cl-sponsored{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    border-top:1px solid #edf1f7;
+    padding-top:12px;
+    margin-top:10px;
+    color:#98a2b3;
+    font-size:10px;
+}
+.cl-continue{
+    width:100%;
+    min-height:52px;
+    margin-top:16px;
+    border-radius:15px;
+    border:0;
+    font-size:15px;
+    font-weight:850;
+    background:linear-gradient(135deg,#2ac978,#12a95b);
+    box-shadow:0 8px 22px rgba(18,169,91,.20);
+}
+.cl-continue span{
+    margin-left:7px;
+    font-size:19px;
+}
+.cl-secure{
+    text-align:center;
+    color:#98a2b3;
+    font-size:10px;
+    margin-top:15px;
+}
+
+</style>
 </head>
 <body>
 
@@ -138,44 +309,61 @@ const adType = params.get("type") || "file_unlock";
             </div>
         </div>
 
-        <!-- STEP 2: Ad Watching Screen -->
-        <div id="step2" class="hidden">
-            <div class="steps">
-                <div class="step-item done"><div class="step-num">✓</div> Ready</div>
-                <div class="step-item active"><div class="step-num">2</div> Watch</div>
-                <div class="step-item"><div class="step-num">3</div> Confirm</div>
+        <!-- STEP 2: CLEAN LIGHT PREMIUM AD SCREEN -->
+        <div id="step2" class="hidden clean-light-unlock">
+
+            <div class="cl-header">
+                <div class="cl-logo">✈️</div>
+                <div>
+                    <div class="cl-brand">FLASH FILE SHARE</div>
+                    <div class="cl-subbrand">Unlock Your File</div>
+                </div>
             </div>
 
-            <div class="card">
-                <div class="status-box">STEP 2 OF 3</div>
-                <h2 style="margin-bottom: 20px;">Complete the verification</h2>
-                
-                <div class="spinner"></div>
-                <p style="text-align: center; color: #65676b; margin-bottom: 20px;">Waiting for the rewarded experience...</p>
+            <div class="cl-step">STEP 2 OF 3</div>
 
-                <!-- MONETAG AD SECTION -->
-                <div class="ad-wrapper">
-                    <div class="ad-timer" id="timer">00:15</div>
-                    <div id="verifyStatus" style="text-align:center; margin:12px 0; font-size:15px; font-weight:600; color:#f59e0b;">
-                        ⏳ Waiting for advertisement verification...
-                    </div>
-                    
-                    <!-- Monetag Ad Container -->
-                    <div class="monetag-ad-container" id="monetag-ad">
-                        <!-- Monetag SDK will load ad here -->
-                    </div>
-                    
-                    <div class="ad-main-title" style="font-size: 20px;">Watch Ad to Unlock</div>
-                    <div class="ad-sub-title" style="color: #9ca3af; font-size: 14px;">Please wait 15 seconds...</div>
-                    
-                    <div class="ad-info-box">
-                        <h4>📢 Advertisement</h4>
-                        <p>Please watch this short advertisement to support us and unlock your file instantly.</p>
-                        <span class="ad-tag">Sponsored by Monetag</span>
-                    </div>
+            <div class="cl-title">
+                <h2>Watch & Unlock</h2>
+                <p>Watch one short advertisement to unlock your requested file.</p>
+            </div>
+
+            <div class="cl-ad-card">
+
+                <div class="cl-ad-label">
+                    <span class="cl-dot"></span>
+                    REWARDED ADVERTISEMENT
                 </div>
 
-                <button class="btn btn-success" id="continueBtn" style="display:none;" onclick="goToStep3()">➡️ CONTINUE</button>
+                <div class="cl-play">▶</div>
+
+                <h3>Advertisement</h3>
+                <p class="cl-ad-text">
+                    Please watch the advertisement to support us and unlock your file instantly.
+                </p>
+
+                <div class="cl-timer" id="timer">00:15</div>
+
+                <div id="verifyStatus" class="cl-status">
+                    ⏳ Waiting for advertisement verification...
+                </div>
+
+                <div class="monetag-ad-container" id="monetag-ad"></div>
+
+                <div class="cl-sponsored">
+                    <span>📢 Advertisement</span>
+                    <span>Sponsored by Monetag</span>
+                </div>
+            </div>
+
+            <button class="btn btn-success cl-continue"
+                    id="continueBtn"
+                    style="display:none;"
+                    onclick="goToStep3()">
+                CONTINUE <span>→</span>
+            </button>
+
+            <div class="cl-secure">
+                🔒 Secure verification&nbsp;&nbsp; • &nbsp;&nbsp;⚡ Quick unlock
             </div>
         </div>
 
