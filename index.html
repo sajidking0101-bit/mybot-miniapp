@@ -419,29 +419,28 @@ function goToStep2() {
     continueBtn.disabled = true;
 
     if (typeof show_11773161 === 'function') {
-    (async function runTwoAds() {
-      for (let ad = 1; ad <= 2; ad++) {
-        verifyStatus.innerText = "Completing advertisement " + ad + " of 2...";
-        try {
-          const result = await show_11773161({ ymid: token, requestVar: "unlock_file" });
-          console.log("Monetag completed ad", ad, result);
-          if (!result || result.reward_event_type !== "valued") {
-            verifyStatus.innerText = "Ad " + ad + " was not verified. Please try again.";
-            return;
-          }
-        } catch (error) {
-          console.log("Monetag error", error);
-          verifyStatus.innerText = "Advertisement " + ad + " failed. Please try again.";
-          return;
-        }
-      }
-      verifyStatus.innerText = "Both ads completed. Checking unlock...";
-      checkUnlockStatus();
-    })();
-} else {
-    verifyStatus.innerText = "Advertisement service unavailable. Please try again.";
-}
-checkUnlockStatus();
+        show_11773161({
+            ymid: token,
+            requestVar: "unlock_file"
+        }).then(function(result) {
+            console.log("Monetag completed:", result);
+
+            if (result && result.reward_event_type === "valued") {
+                verifyStatus.innerText = "✅ Advertisement completed! Your file is unlocked.";
+                verifyStatus.style.color = "#22c55e";
+
+                if (countdown) {
+                    clearInterval(countdown);
+                    countdown = null;
+                }
+
+                timerElement.innerText = "✅";
+                continueBtn.disabled = false;
+                continueBtn.style.display = "block";
+                continueBtn.innerText = "➡️ CONTINUE";
+            }
+
+            checkUnlockStatus();
         }).catch(function(error) {
             console.log("Monetag error:", error);
             verifyStatus.innerText = "❌ Advertisement verification failed. Please try again.";
